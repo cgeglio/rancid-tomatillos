@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import MoviesContainer from '../../MoviesContainer/MoviesContainer';
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
 
 class App extends Component {
   constructor() {
@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return(
       <main>
-        {this.state.movies.length ? 
+        {this.state.movies.length ?
         <MoviesContainer movies={this.state.movies}/>
         : <p>Error</p>
       }
