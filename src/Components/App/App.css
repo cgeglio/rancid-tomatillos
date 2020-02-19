@@ -1,11 +1,18 @@
-
+.login-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .clapper {
+  padding-top: 610px;
   height: 80%;
   position: absolute;
 }
 
 .login-msg {
-  float: right;
-  width: 
+  font-size: 5em;
+  margin-bottom: 115px;
+  text-align: center;
 }

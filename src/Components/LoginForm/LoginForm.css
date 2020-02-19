@@ -1,8 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
-  padding-top: 405px;
-  padding-left: 170px;
+  padding-top: 965px;
   position: absolute;
   z-index: 3;
 }
@@ -19,7 +18,13 @@ input {
 .login-btn {
   align-self: center;
   font-size: 1em;
+  font-weight: bold;
   height: 30px;
   margin-top: 20px;
   width: 120px;
+}
+
+.login-btn:hover {
+  background-color: #4CE600;
+  cursor: pointer;
 }

@@ -28,9 +28,11 @@ class App extends Component {
           }
       </Route>
       <Route exact path="/login">
-        <img src={process.env.PUBLIC_URL + '/images/clapper.png'} alt="Clapperboard icon" className="clapper" />
-        <LoginForm />
-        <h2 className='login-msg'>Get your ratings on.</h2>
+        <section className="login-page">
+          <h2 className='login-msg'>Get your ratings on.</h2>
+          <img src={process.env.PUBLIC_URL + '/images/clapper.png'} alt="Clapperboard icon" className="clapper" />
+          <LoginForm />
+        </section>
       </Route>
       </main>
     )
