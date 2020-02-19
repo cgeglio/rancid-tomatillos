@@ -1,12 +1,14 @@
 .movie-poster-image {
   height: 300px;
   width: 200px;
+  object-fit: cover;
 }
 
 .movie-poster-image:hover {
   cursor: pointer;
   transform: scale(1.06);
   transition: transform .5s;
+  box-shadow: 0 0 30px 3px #fbe832;
 }
 
 .movie-preview-container {
