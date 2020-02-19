@@ -14,12 +14,11 @@ const MoviesContainer = ({ movies }) => {
   let topMovies = filteredMovies.map(movie => {
     return <MoviePreview key = {movie.id} movie = {movie}/>
   })
-  
-      console.log(filteredMovies)
+
   return (
     <section className='movies-display-container'>
       <section className='top-rated-movies'>
-        {topMovies}
+
       </section>
       <section className='bottom-display-section'>
         {allMovies}
