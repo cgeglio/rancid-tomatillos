@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return(
-      <main>
+      <main className='main-app-display'>
         {this.state.movies.length ?
         <MoviesContainer movies={this.state.movies}/>
         : <p>Error</p>
