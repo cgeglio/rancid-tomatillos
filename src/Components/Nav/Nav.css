@@ -9,14 +9,14 @@
 
 #title {
   position: absolute;
-  top: 5%;
-  left: 5%;
-  font-size: 200%;
+  top: 30%;
+  left: 7%;
+  font-size: 160%;
   font-family: Arial;
 }
 
 #nav {
-  height: 100px;
+  height: 80px;
   background-image: url(../../Assets/nav_background.png);
   background-size: contain;
   width: 100%;
@@ -24,15 +24,19 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 5;
 
 }
 
 #logo {
   background-image: url(../../Assets/lemonwire_logo.jpg);
   background-size: contain;
-  height: 100px;
-  width: 100px;
-  border-radius: 50px;
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
 }
 
 #logout-button {
