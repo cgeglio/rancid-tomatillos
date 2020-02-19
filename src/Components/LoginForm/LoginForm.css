@@ -1,0 +1,30 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 965px;
+  position: absolute;
+  z-index: 3;
+}
+
+input {
+  background: 0;
+  border: 0;
+  font-size: 2em;
+  margin-bottom: 50px;
+  text-indent: .5em;
+  width: 350px;
+}
+
+.login-btn {
+  align-self: center;
+  font-size: 1em;
+  font-weight: bold;
+  height: 30px;
+  margin-top: 20px;
+  width: 120px;
+}
+
+.login-btn:hover {
+  background-color: #4CE600;
+  cursor: pointer;
+}

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
+import { Route, Redirect, Link } from 'react-router-dom';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import LoginForm from '../LoginForm/LoginForm'
+import Nav from '../Nav/Nav';
 import './App.css';
+
 
 class App extends Component {
   constructor() {
@@ -19,10 +22,21 @@ class App extends Component {
 
   render() {
     return(
-
-      <main id='main' className='main-app-display'>
+       <main id='main' className='main-app-display'>
         <Nav />
-        {this.state.movies.length ? <MoviesContainer movies={this.state.movies}/> : <p>Error</p>}
+        <Route exact path="/">
+          {this.state.movies.length ?
+          <MoviesContainer movies={this.state.movies}/>
+          : <p>Error</p>
+          }
+      </Route>
+      <Route exact path="/login">
+        <section className="login-page">
+          <h2 className='login-msg'>Get your ratings on.</h2>
+          <img src={process.env.PUBLIC_URL + '/images/clapper.png'} alt="Clapperboard icon" className="clapper" />
+          <LoginForm />
+        </section>
+      </Route>
       </main>
     )
   }
