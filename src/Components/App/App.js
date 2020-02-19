@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Route, Redirect, Link } from 'react-router-dom';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import LoginForm from '../LoginForm/LoginForm'
+import Nav from '../Nav/Nav';
+import './App.css';
+
 
 class App extends Component {
   constructor() {
@@ -20,7 +22,8 @@ class App extends Component {
 
   render() {
     return(
-      <main>
+       <main id='main' className='main-app-display'>
+        <Nav />
         <Route exact path="/">
           {this.state.movies.length ?
           <MoviesContainer movies={this.state.movies}/>
