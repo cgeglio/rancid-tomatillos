@@ -1,0 +1,14 @@
+.movie-poster-image {
+  height: 300px;
+  width: 200px;
+}
+
+.movie-poster-image:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  transition: transform .5s;
+}
+
+.movie-preview-container {
+  margin: 2%;
+}
