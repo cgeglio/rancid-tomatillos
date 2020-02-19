@@ -13,6 +13,7 @@ class App extends Component {
       movies: []
     };
   }
+
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
       .then(response => response.json())
@@ -41,4 +42,5 @@ class App extends Component {
     )
   }
 }
+
 export default App;

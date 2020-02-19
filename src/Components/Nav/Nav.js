@@ -9,13 +9,10 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav id='nav'>
-        <h1 id='title'>LemonWire</h1>
+      <nav className='nav'>
         <div id='logo'></div>
-        <div id='greeting'>
-          <h2>Welcome, Mike Tyson!</h2>
-          <h3>DatsWathup@thavage.com</h3>
-        </div>
+        <h1 id='title'>LemonWire</h1>
+        <h2 id='welcome-message'>🍋 Welcome, Mike Tyson! 🍋</h2>
         <div id='user-avatar'></div>
         <button id='logout-button'>logout</button>
       </nav>
@@ -24,3 +21,4 @@ class Nav extends Component {
 }
 
 export default Nav;
+// <h3 id='email'>DatsWathup@thavage.com</h3>
