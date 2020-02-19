@@ -7,3 +7,9 @@
   background-color: #292c33;
   height: 100vh;
 }
+
+.main-app-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

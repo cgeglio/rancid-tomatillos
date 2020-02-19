@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
-import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
+import MoviesContainer from '../../MoviesContainer/MoviesContainer';
 
 class App extends Component {
   constructor() {
@@ -19,10 +18,11 @@ class App extends Component {
 
   render() {
     return(
-
-      <main id='main' className='main-app-display'>
-        <Nav />
-        {this.state.movies.length ? <MoviesContainer movies={this.state.movies}/> : <p>Error</p>}
+      <main>
+        {this.state.movies.length ? 
+        <MoviesContainer movies={this.state.movies}/>
+        : <h3>Loading...</h3>
+      }
       </main>
     )
   }
