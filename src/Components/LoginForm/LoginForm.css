@@ -1,7 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
-  padding-top: 965px;
+  padding-top: 485px;
   position: absolute;
   z-index: 3;
 }
