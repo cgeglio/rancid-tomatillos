@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 405px;
+  padding-left: 170px;
+  position: absolute;
+  z-index: 3;
+}
+
+input {
+  background: 0;
+  border: 0;
+  font-size: 2em;
+  margin-bottom: 50px;
+  text-indent: .5em;
+  width: 350px;
+}
+
+.login-btn {
+  align-self: center;
+  font-size: 1em;
+  height: 30px;
+  margin-top: 20px;
+  width: 120px;
+}

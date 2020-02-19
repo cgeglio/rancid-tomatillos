@@ -28,8 +28,10 @@ class LoginForm extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button>Login</button>
+        <button className='login-btn'>Login</button>
       </form>
     )
   }
 }
+
+export default LoginForm

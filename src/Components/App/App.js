@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Redirect, Link } from 'react-router-dom';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import LoginForm from '../LoginForm/LoginForm'
 
 class App extends Component {
   constructor() {
@@ -27,7 +28,9 @@ class App extends Component {
           }
       </Route>
       <Route exact path="/login">
+        <img src={process.env.PUBLIC_URL + '/images/clapper.png'} alt="Clapperboard icon" className="clapper" />
         <LoginForm />
+        <h2 className='login-msg'>Get your ratings on.</h2>
       </Route>
       </main>
     )
