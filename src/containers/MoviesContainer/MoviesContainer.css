@@ -1,0 +1,20 @@
+.movies-display-container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  margin-top: 80px;
+  width: 100%;
+}
+
+.top-rated-movies {
+  /* border: solid 2px red; */
+  width: 100%;
+}
+
+.bottom-display-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  width: 100%;
+}
