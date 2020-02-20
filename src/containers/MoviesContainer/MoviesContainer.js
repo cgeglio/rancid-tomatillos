@@ -21,9 +21,16 @@ class MoviesContainer extends Component {
     }
     let allMovies = this.props.movies.map(movie => {
       return <MoviePreview key={movie.id} movie={movie}/>})
+    let filteredMovies = this.props.movies.filter(movie => {
+      return movie.average_rating > 7
+    })
+    let topMovies = filteredMovies.map(movie => {
+    return <MoviePreview key = {movie.id} movie = {movie}/>
+  })
     return (
       <section className='movies-display-container'>
         <section className='top-rated-movies'>
+          {topMovies}
         </section>
         <section className='bottom-display-section'>
           {allMovies}
