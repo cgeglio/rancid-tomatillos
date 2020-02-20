@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import LoginForm from '../LoginForm/LoginForm'
 import Nav from '../Nav/Nav';
 import './App.css';
-
 
 class App extends Component {
   constructor() {
@@ -14,22 +13,12 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
-      .then(response => response.json())
-      .then(movies => this.setState({movies: movies.movies}))
-      .catch(error => console.log(error))
-  }
-
   render() {
     return(
        <main>
         <Route exact path="/">
           <Nav />
-          {this.state.movies.length ?
-          <MoviesContainer movies={this.state.movies}/>
-          : <p>Error</p>
-          }
+          <MoviesContainer />
         </Route>
         <Route exact path="/login">
           <section className="login-page">
