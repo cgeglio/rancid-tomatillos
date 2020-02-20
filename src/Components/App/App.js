@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
-import LoginForm from '../LoginForm/LoginForm'
+import LoginForm from '../../containers/LoginForm/LoginForm'
 import Nav from '../Nav/Nav';
 import './App.css';
 
