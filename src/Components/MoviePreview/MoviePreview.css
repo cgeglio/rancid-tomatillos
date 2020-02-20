@@ -14,3 +14,18 @@
 .movie-preview-container {
   margin: 2%;
 }
+
+.preview-avg-rating {
+  font-size: 130%;
+  position: relative;
+  top: 11%;
+  left: 80%;
+  font-weight: bolder;
+  background-color: #fbe832;
+  width: 20px;
+  padding: 5px;
+  height: 20px;
+  border-radius: 15px;
+  z-index: 100;
+
+}
