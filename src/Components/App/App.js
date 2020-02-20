@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
-import LoginForm from '../../containers/LoginForm/LoginForm'
+import LoginForm from '../LoginForm/LoginForm'
 import Nav from '../Nav/Nav';
 import './App.css';
-import { connect } from 'react-redux'
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      movies: []
+    };
+  }
 
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
@@ -27,21 +32,15 @@ class App extends Component {
           }
         </Route>
         <Route exact path="/login">
-          {this.props.user.id ? <Redirect to="/" /> :
-            <section className="login-page">
-              <h2 className='login-msg'>Get your ratings on.</h2>
-              <img src={process.env.PUBLIC_URL + '/images/clapper.png'} alt="Clapperboard icon" className="clapper" />
-              <LoginForm />
-            </section>
-          }
+          <section className="login-page">
+            <h2 className='login-msg'>Get your ratings on.</h2>
+            <img src={process.env.PUBLIC_URL + '/clapper.png'} alt="Clapperboard icon" className="clapper" />
+            <LoginForm />
+          </section>
         </Route>
       </main>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user
-})
-
-export default connect(mapStateToProps)(App);
+export default App;
