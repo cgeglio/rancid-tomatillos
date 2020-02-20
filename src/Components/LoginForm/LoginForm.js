@@ -4,7 +4,7 @@ import './LoginForm.css';
 class LoginForm extends Component {
   constructor() {
     super();
-    this.state= {username: '', password: ''}
+    this.state= {email: '', password: ''}
   }
 
   handleChange = event => {
@@ -16,9 +16,9 @@ class LoginForm extends Component {
       <form>
         <input
           type="text"
-          placeholder="Username..."
-          name="username"
-          value={this.state.username}
+          placeholder="Email..."
+          name="email"
+          value={this.state.email}
           onChange={this.handleChange}
         />
         <input
