@@ -37,7 +37,7 @@ class LoginForm extends Component {
     return fetch('https://rancid-tomatillos.herokuapp.com/api/v1/login', options)
       .then(response => response.json())
       .then(userInfo => this.props.addUser(userInfo.user))
-      .catch(error => console.log('Error posting'))
+      .catch(error => this.setState({error: true}))
   }
 
   render() {
