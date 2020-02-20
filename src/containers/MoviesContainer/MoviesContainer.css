@@ -7,8 +7,14 @@
 }
 
 .top-rated-movies {
-  /* border: solid 2px red; */
+  border: solid 2px red;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-wrap: normal;
+  /* overflow: scroll; */
+  height: 50%;
 }
 
 .bottom-display-section {
