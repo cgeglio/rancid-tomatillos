@@ -21,10 +21,23 @@ class MoviesContainer extends Component {
     }
     let allMovies = this.props.movies.map(movie => {
       return <MoviePreview key={movie.id} movie={movie}/>})
+    let sortedMovies = this.props.movies.sort((a, b) => {
+      return a.average_rating - b.average_rating
+    })
+    let topMovies = sortedMovies.map(movie => {
+    return <MoviePreview key = {movie.id} movie = {movie}/>
+  })
     return (
       <section className='movies-display-container'>
+          <section className='movies-heading'>
+            <h3>Highy Rated Movies</h3>
+          </section>
         <section className='top-rated-movies'>
+          {topMovies}
         </section>
+          <section className='movies-heading'>
+            <h3>All Movies</h3>
+          </section>
         <section className='bottom-display-section'>
           {allMovies}
         </section>
