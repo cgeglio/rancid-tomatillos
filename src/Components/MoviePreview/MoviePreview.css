@@ -15,11 +15,9 @@
   margin: 2%;
 }
 
-.preview-avg-rating {
+
+.preview-rating {
   font-size: 130%;
-  position: relative;
-  top: 11%;
-  left: 80%;
   font-weight: bolder;
   background-color: #fbe832;
   width: 20px;
@@ -27,5 +25,32 @@
   height: 20px;
   border-radius: 15px;
   z-index: 100;
+}
 
+.preview-rating-button {
+  background-color: #fbe832;
+  border: 0;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: bold;
+  width: 60px;
+  z-index: 100;
+}
+
+.preview-rating-button:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  transition: transform .5s;
+  box-shadow: 0 0 10px 1px #fbe832;
+}
+
+.ratings {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 5%;
+  position: relative;
+  top: 11%;
+  width: 90%;
 }
