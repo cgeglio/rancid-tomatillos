@@ -18,20 +18,20 @@
 }
 
 .nav {
-  height: 80px;
+  align-items: center;
   background-image: url(../../Assets/film_reel_nav_yellow_nf.png);
   background-size: contain;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  top: 0;
-  left: 0;
-  position: fixed;
-  z-index: 120;
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  left: 0;
+  position: fixed;
   opacity: 90%;
+  top: 0;
+  width: 100%;
+  z-index: 120;
 }
 
 #logo {
@@ -42,29 +42,40 @@
   border-radius: 40px;
 }
 
-#logout-button {
-  height: 40px;
-  width: 80px;
+.login-button,
+.logout-button {
   background-color: #292c33;
+  border: none;
   color: #fbe832;
   font-size: 100%;
-  border: none;
+  font-weight: bold;
+  height: 40px;
+  text-decoration: none;
+  width: 80px;
 }
 
-#logout-button:hover {
-  height: 50px;
-  border: none;
-  cursor: pointer;
+.login-button:hover,
+.logout-button:hover {
   background-color: #fbe832;
+  border: none;
   color: #292c33;
+  cursor: pointer;
+  height: 50px;
+}
+
+a {
+  font-weight: bold;
+  height: 35px !important;
+  padding-top: 13px;
+  text-align: center;
 }
 
 #welcome-message {
-  margin-left: 20%;
   color: #FFF;
+  margin-left: 20%;
 }
 
 #email {
-  font-size: 80%;
   background-color: #a3ffcd;
+  font-size: 80%;
 }

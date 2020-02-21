@@ -14,9 +14,7 @@ class App extends Component {
        <main>
         <Route exact path="/">
           <Nav />
-
           <MoviesContainer />
-
         </Route>
         <Route exact path="/login">
           {this.props.user.id ? <Redirect to="/" /> :
