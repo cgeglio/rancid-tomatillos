@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviePreview should match the snapshot 1`] = `
+<article
+  className="movie-preview-container"
+>
+  <p>
+    2020/10/10
+  </p>
+  <p
+    className="preview-avg-rating"
+  >
+    5
+  </p>
+  <img
+    alt="movie poster"
+    className="movie-poster-image"
+    src="url"
+  />
+</article>
+`;
