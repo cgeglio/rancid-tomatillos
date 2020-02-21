@@ -11,7 +11,7 @@ class Nav extends Component {
       <nav className='nav'>
         <div id='logo'></div>
         <h1 id='title'>LemonWire</h1>
-        <h2 id='welcome-message'>🍋 Welcome, Mike Tyson! 🍋</h2>
+        <h2 id='welcome-message'>🍋 Welcome {this.props.user ? this.props.user.name : ''}! 🍋</h2>
         <div id='user-avatar'></div>
         {this.props.user.id ? <button onClick={() => this.props.logoutUser(this.props.user)} className='logout-button'>Logout</button> : <Link to="/login" className='login-button'>Login</Link>}
       </nav>
