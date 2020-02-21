@@ -15,12 +15,18 @@ class MoviesContainer extends Component {
       .catch(error => console.log(error))
   }
 
+  formatDate(releaseDate) {
+     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let date = releaseDate.split('-')
+    return `${monthNames[date[1] - 1]} ${date[2]}, ${date[0]}`;
+  }
+
   render() {
     if (!this.props.movies) {
       return  <p>loading</p>
     }
     let allMovies = this.props.movies.map(movie => {
-      return <MoviePreview key={movie.id} movie={movie}/>})
+      return <MoviePreview key={movie.id} date={this.formatDate(movie.release_date)} movie={movie}/>})
     let sortedMovies = this.props.movies.sort((a, b) => {
       return a.average_rating - b.average_rating
     })
