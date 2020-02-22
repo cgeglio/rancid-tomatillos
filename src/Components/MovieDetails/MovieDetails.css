@@ -29,7 +29,7 @@
 
 .close-button,
 .rating-button {
-  margin: 2% 0% 0% 90%;
+  margin: 40% 0% 0% 670%;
   height: 30px;
   width: 30px;
   border-radius: 15px;
@@ -46,7 +46,7 @@
 
 .movie-title {
   font-size: 180%;
-  margin-bottom: 3%;
+  margin: 4% 0% 3% 0%;
 }
 
 .movie-overview {

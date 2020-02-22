@@ -8,6 +8,11 @@ export const updateUser = user => ({
   user
 });
 
+export const updateSelectedMovie = movie => ({
+  type: 'UPDATE_SELECTED_MOVIE',
+  movie
+});
+
 export const logoutUser = user => ({
   type: 'LOGOUT_USER',
   user
@@ -22,3 +27,4 @@ export const removeRatings = ratings => ({
   type: 'REMOVE_RATINGS',
   ratings
 })
+
