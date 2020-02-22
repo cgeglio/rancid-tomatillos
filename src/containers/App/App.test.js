@@ -12,7 +12,7 @@ describe('App', () => {
   });
 
   describe('mapStateToProps', () => {
-    it('should return an object with a user', () => {
+    it('should return an object with a user and an array of movies', () => {
       const mockState = {
         movies: [ { name: 'Jumanji' } ],
         user: { name: 'Robbie' },
