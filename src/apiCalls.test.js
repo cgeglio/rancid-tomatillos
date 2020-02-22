@@ -1,4 +1,4 @@
-import { getMoviesData, getUSerInfo, getUSerRatings } from './apiCalls';
+import { getMoviesData, getUserInfo, getUserRatings } from './apiCalls';
 
 describe('getMoviesData', () => {
   let mockResponse = [{
@@ -36,6 +36,35 @@ describe('getMoviesData', () => {
       return Promise.reject(Error('200 status code not found: getMovies throw error'))
     })
     expect(getMoviesData()).rejects.toEqual(Error('200 status code not found: getMovies throw error'))
-  })
+  });
 
+  describe('getUserInfo', () => {
+    let mockUser = {
+      email: "sam@turing.io",
+      id: 20,
+      name: "Sam"
+    }
+
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: Promise.resolve(mockUser)
+        })
+      })
+    })
+
+    it('should fetch with correct arguments', () => {
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(mockUser),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      const expectedArguments = ['https://rancid-tomatillos.herokuapp.com/api/v1/login', options]
+      getUserInfo(mockUser);
+      expect(window.fetch).toHaveBeenCalledWith(...expectedArguments)
+    })
+  })
 });
