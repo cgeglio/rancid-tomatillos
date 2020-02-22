@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './MoviePreview.css';
-import { Link } from 'react-router-dom';
 
 const MoviePreview = ({ date, movie, saveSelectedMovieToStore  }) => {
   return (

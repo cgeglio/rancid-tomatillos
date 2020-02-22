@@ -24,17 +24,20 @@ class MoviesContainer extends Component {
 
   findUserRating = movie => {
     return this.props.ratings.find(rating => rating.movie_id === movie) ? this.props.ratings.find(rating => rating.movie_id === movie).rating : 0;
+  }
 
+  saveSelectedMovieToStore = movie => {
+    this.props.addSelectedMovieToStore(movie);
   }
 
   render() {
-    
+
     let allMovies = this.props.movies.map(movie => {
       movie.user_rating = this.props.ratings ? this.findUserRating(movie.id) : 0;
       return <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key={movie.id} date={this.formatDate(movie.release_date)} movie={movie}/>})
 
     let sortedMovies = this.props.movies.sort((a, b) => a.average_rating - b.average_rating)
-    let topMovies = sortedMovies.map(movie => <MoviePreview key = {movie.id} movie = {movie}/>)
+    let topMovies = sortedMovies.map(movie => <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key = {movie.id} movie = {movie}/>)
 
     return (
       !this.props.movies ? <p>loading</p> : (
