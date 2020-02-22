@@ -6,7 +6,7 @@ import { getMovies } from '../../actions'
 import { updateSelectedMovie } from '../../actions';
 
 
-class MoviesContainer extends Component {
+export class MoviesContainer extends Component {
 
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
@@ -53,14 +53,14 @@ class MoviesContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies,
   selectedMovie: state.selectedMovieReducer,
   user: state.user,
   ratings: state.ratings
 })
 
-const mapDispatchToProps = (dispatch) =>({
+export const mapDispatchToProps = (dispatch) =>({
   addMoviesToStore: movies => dispatch(getMovies(movies)),
   addSelectedMovieToStore: movie => dispatch(updateSelectedMovie(movie))
 })
