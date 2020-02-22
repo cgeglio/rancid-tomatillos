@@ -4,24 +4,26 @@ import  { App, mapStateToProps } from './App';
 import { shallow } from 'enzyme';
 
 describe('App', () => {
-
-  it('should match the snapshot', () => {
-    const wrapper = shallow(<App user={{id:5}}/>);
-    expect(wrapper).toMatchSnapshot();
+  describe('App container/component', () => {
+    it('should match the snapshot', () => {
+      const wrapper = shallow(<App user={{id:5}}/>);
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 
-  it('should be able to map properties from state to props', () => {
-   const state = {
-     movies: [ { name: 'Jumanji' } ],
-     user: { name: 'Robbie' }
-   };
-
-   const expected = {
-     movies: [ { name: 'Jumanji' } ],
-     user: { name: 'Robbie' }
-   };
-
-   expect(mapStateToProps(state)).toEqual(expected);
- })
-
+  describe('mapStateToProps', () => {
+    it('should return an object with a user', () => {
+      const mockState = {
+        movies: [ { name: 'Jumanji' } ],
+        user: { name: 'Robbie' },
+        ratings: [{rating: 5}, {rating: 4}],
+      };
+      const expected = {
+        movies: [ { name: 'Jumanji' } ],
+        user: { name: 'Robbie' },
+      }
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expected)
+    });
+  });
 });

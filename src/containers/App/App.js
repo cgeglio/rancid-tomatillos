@@ -4,7 +4,7 @@ import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import LoginForm from '../../containers/LoginForm/LoginForm'
 import Nav from '../Nav/Nav';
 import MovieDetails from '../MovieDetails/MovieDetails';
-import Loading from '../Loading/Loading';
+import Loading from '../../Components/Loading/Loading';
 import './App.css';
 import { connect } from 'react-redux'
 
