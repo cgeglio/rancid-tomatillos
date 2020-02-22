@@ -43,8 +43,8 @@
 }
 
 .user-rating-bundle {
-  margin-left: 50%;
-  margin-right: 2%;
+  margin-left: 0%;
+  margin-right: 4%;
 }
 
 .user-rating-lemon {
@@ -57,8 +57,14 @@
   background-color: #fbe832;
   border: 0;
   border-radius: 3px;
+  color: black;
   font-size: 1em;
   font-weight: bold;
+  height: 20px !important;
+  margin-top: 10px;
+  padding: 0;
+  position: relative;
+  text-decoration: none;
   width: 60px;
   z-index: 100;
 }
