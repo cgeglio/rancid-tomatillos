@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm LoginForm container/component should match snapshot 1`] = `
+<form>
+  <input
+    name="email"
+    onChange={[Function]}
+    placeholder="Email..."
+    type="text"
+    value=""
+  />
+  <input
+    name="password"
+    onChange={[Function]}
+    placeholder="Password..."
+    type="text"
+    value=""
+  />
+  <button
+    className="login-btn"
+    onClick={[Function]}
+  >
+    Login
+  </button>
+</form>
+`;

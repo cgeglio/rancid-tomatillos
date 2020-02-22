@@ -1,3 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieDetails should render a MovieDetails component 1`] = `undefined`;
+exports[`MovieDetails MovieDetails container/component should match the snapshot 1`] = `
+<article
+  className="movie-details-container"
+>
+  <img
+    alt="movie backdrop"
+    className="movie-backdrop"
+  />
+  <div
+    className="movie-details"
+  >
+    <Link
+      to="/"
+    >
+      <button
+        className="close-button"
+      >
+        X
+      </button>
+    </Link>
+    <h1
+      className="movie-title"
+    >
+      Sonic the Hedgehog
+    </h1>
+    <p>
+      February 10, 2020
+    </p>
+    <p
+      className="movie-overview"
+    />
+    <div
+      className="rating-container"
+    >
+      <button
+        className="rating-button"
+      >
+        +
+      </button>
+      <p
+        className="movie-number"
+      />
+      <button
+        className="rating-button"
+      >
+        -
+      </button>
+    </div>
+  </div>
+</article>
+`;

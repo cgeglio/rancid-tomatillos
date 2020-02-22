@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesContainer MoviesContainer container/component should match the snapshot 1`] = `
+<section
+  className="movies-display-container"
+>
+  <section
+    className="movies-heading"
+  >
+    <h3>
+      Highy Rated Movies
+    </h3>
+  </section>
+  <section
+    className="top-rated-movies"
+  >
+    <MoviePreview
+      key="30"
+      movie={
+        Object {
+          "id": 30,
+          "title": "Frozen II",
+          "user_rating": 0,
+        }
+      }
+      saveSelectedMovieToStore={[Function]}
+      user={true}
+    />
+  </section>
+  <section
+    className="movies-heading"
+  >
+    <h3>
+      All Movies
+    </h3>
+  </section>
+  <section
+    className="bottom-display-section"
+  >
+    <MoviePreview
+      key="30"
+      movie={
+        Object {
+          "id": 30,
+          "title": "Frozen II",
+          "user_rating": 0,
+        }
+      }
+      saveSelectedMovieToStore={[Function]}
+    />
+  </section>
+</section>
+`;
