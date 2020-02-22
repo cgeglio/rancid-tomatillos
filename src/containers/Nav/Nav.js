@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { logoutUser } from '../../actions';
 import { removeRatings } from '../../actions';
 
-class Nav extends Component {
+export class Nav extends Component {
 
   render() {
     return (
@@ -20,11 +20,11 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   logoutUser: user => dispatch(logoutUser(user)),
   removeRatings: ratings => dispatch(removeRatings(ratings))
 })
