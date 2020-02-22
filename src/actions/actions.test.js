@@ -20,5 +20,19 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction)
   })
 
+  it('should have a type of UPDATE_USER', () => {
+    const user = {
+        id: 1,
+        name: "Alan",
+        email: "alan@turing.io"
+    }
+    const expectedAction = {
+      type: 'UPDATE_USER',
+      user
+    }
+    const result = actions.updateUser(user)
+    
+    expect(result).toEqual(expectedAction)
+  });
 
 })
