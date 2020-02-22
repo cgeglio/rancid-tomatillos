@@ -24,4 +24,20 @@ describe('ratings', () => {
     const result = ratings(mockState, mockAction);
     expect(result).toEqual(expected)
   })
+
+  it('should return the correct state if the action type is REMOVE_RATINGS', () => {
+    const mockState = [{
+      rating: 5,
+    }]
+    const mockAction = {
+      type: 'REMOVE_RATINGS',
+      ratings: [{
+        rating: 5
+      }],
+    }
+    const expected = [];
+
+    const result = ratings(mockState, mockAction);
+    expect(result).toEqual(expected)
+  })
 })
