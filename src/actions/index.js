@@ -12,3 +12,14 @@ export const updateSelectedMovie = movie => ({
   type: 'UPDATE_SELECTED_MOVIE',
   movie
 });
+
+export const logoutUser = user => ({
+  type: 'LOGOUT_USER',
+  user
+})
+
+export const getRatings = ratings => ({
+  type: 'GET_RATINGS',
+  ratings
+})
+

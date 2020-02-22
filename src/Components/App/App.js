@@ -9,7 +9,7 @@ import './App.css';
 import { connect } from 'react-redux'
 
 
-class App extends Component {
+export class App extends Component {
 
   render() {
     return(
@@ -36,7 +36,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   user: state.user,
   movies: state.movies
 })

@@ -1,13 +1,36 @@
 .movies-display-container {
   display: flex;
   flex-flow: column nowrap;
-  height: 100vh;
   margin-top: 80px;
   width: 100%;
 }
 
+.movies-heading {
+  background-color: #E6D532;
+  color: #292B33;
+  width: 20%;
+  text-align: center;
+  height: 2rem;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 0 35px 35px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .top-rated-movies {
-  width: 100%;
+  width: 98%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 25rem;
+  overflow-x: scroll;
+  background-image: url(../../Assets/movie-spotlight.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bottom-display-section {

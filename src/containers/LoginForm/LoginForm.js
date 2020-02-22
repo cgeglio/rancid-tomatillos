@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './LoginForm.css';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions';
+import { getRatings } from '../../actions';
 
 class LoginForm extends Component {
   constructor() {
@@ -36,9 +37,19 @@ class LoginForm extends Component {
 
     return fetch('https://rancid-tomatillos.herokuapp.com/api/v1/login', options)
       .then(response => response.json())
-      .then(userInfo => this.props.addUser(userInfo.user))
-      .catch(error => console.log('Error posting'))
+      .then(userInfo => {
+        this.props.addUser(userInfo.user)
+        this.getUserRatings(userInfo.user.id)
+      })
+      .catch(error => this.setState({error: true}))
   }
+
+  getUserRatings = (userId) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
+      .then(response => response.json())
+      .then(ratings => this.props.addUserRatings(ratings.ratings))
+      .catch(error => console.log(error))
+    }
 
   render() {
     return (
@@ -65,7 +76,8 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addUser: user => dispatch(updateUser(user))
+  addUser: user => dispatch(updateUser(user)),
+  addUserRatings: ratings => dispatch(getRatings(ratings))
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm)

@@ -18,10 +18,17 @@ input {
   width: 300px;
 }
 
+.error-msg {
+  color: #E6D531;
+  width: 10em;
+}
+
 .login-btn {
+  border-radius: 4px;
   font-size: .8em;
   font-weight: bold;
   height: 2.5em;
+  margin-bottom: 30px;
   width: 10em;
 }
 
