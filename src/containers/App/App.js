@@ -10,7 +10,6 @@ import { connect } from 'react-redux'
 
 
 export class App extends Component {
-
   render() {
     return(
        <main>
@@ -18,9 +17,13 @@ export class App extends Component {
          <Nav />
          <MoviesContainer />
        </Route>
-       <Route exact path='/movie_details'>
-        <Nav />
-         <MovieDetails />
+       <Route path='/movies/:id'>
+          {!this.props.user.id ? <Redirect to="/" /> : (
+          <>
+           <Nav />
+           <MovieDetails />
+          </>
+         )}
        </Route>
        <Route exact path='/login'>
          {this.props.user.id ? <Redirect to='/' /> :
