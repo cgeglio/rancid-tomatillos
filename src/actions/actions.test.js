@@ -87,4 +87,22 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
+  it('should have a type of REMOVE_RATINGS', () => {
+    const ratings = [{
+      id: 726,
+      user_id: 20,
+      movie_id: 21,
+      rating: 4,
+      created_at: "2020-02-21T01:32:41.615Z",
+      updated_at: "2020-02-21T01:32:41.615Z"
+    }]
+    const expectedAction = {
+      type: 'REMOVE_RATINGS',
+      ratings
+    }
+    const result = actions.removeRatings(ratings);
+
+    expect(result).toEqual(expectedAction);
+  })
+
 })
