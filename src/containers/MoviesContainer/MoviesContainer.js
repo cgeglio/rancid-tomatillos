@@ -31,7 +31,7 @@ class MoviesContainer extends Component {
       return <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key={movie.id} movie={movie}/>})
 
     let sortedMovies = this.props.movies.sort((a, b) => a.average_rating - b.average_rating)
-    let topMovies = sortedMovies.map(movie => <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key = {movie.id} movie = {movie}/>)
+    let topMovies = sortedMovies.map(movie => <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} user={this.props.user.id ? true : false} key={movie.id} movie={movie}/>)
 
     return (
       !this.props.movies ? <p>loading</p> : (

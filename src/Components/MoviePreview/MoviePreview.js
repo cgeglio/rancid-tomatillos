@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './MoviePreview.css';
 import lemon from '../../Assets/lemon.png';
 
-const MoviePreview = ({ date, movie, saveSelectedMovieToStore  }) => {
+const MoviePreview = ({ date, movie, user, saveSelectedMovieToStore  }) => {
   return (
     <article onClick={ () => saveSelectedMovieToStore(movie) } className='movie-preview-container'>
       <p>{date}</p>
