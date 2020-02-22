@@ -3,6 +3,7 @@ import './MoviesContainer.css';
 import MoviePreview from '../../Components/MoviePreview/MoviePreview';
 import { connect } from 'react-redux';
 import { getMovies } from '../../actions'
+import { updateSelectedMovie } from '../../actions';
 
 
 class MoviesContainer extends Component {
@@ -23,12 +24,14 @@ class MoviesContainer extends Component {
 
   findUserRating = movie => {
     return this.props.ratings.find(rating => rating.movie_id === movie) ? this.props.ratings.find(rating => rating.movie_id === movie).rating : 0;
+
   }
 
   render() {
+    
     let allMovies = this.props.movies.map(movie => {
       movie.user_rating = this.props.ratings ? this.findUserRating(movie.id) : 0;
-      return <MoviePreview key={movie.id} date={this.formatDate(movie.release_date)} movie={movie}/>})
+      return <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key={movie.id} date={this.formatDate(movie.release_date)} movie={movie}/>})
 
     let sortedMovies = this.props.movies.sort((a, b) => a.average_rating - b.average_rating)
     let topMovies = sortedMovies.map(movie => <MoviePreview key = {movie.id} movie = {movie}/>)
@@ -55,12 +58,14 @@ class MoviesContainer extends Component {
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
+  selectedMovie: state.selectedMovieReducer,
   user: state.user,
   ratings: state.ratings
 })
 
 const mapDispatchToProps = (dispatch) =>({
   addMoviesToStore: movies => dispatch(getMovies(movies)),
+  addSelectedMovieToStore: movie => dispatch(updateSelectedMovie(movie))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);
