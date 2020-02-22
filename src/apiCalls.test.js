@@ -65,6 +65,36 @@ describe('getMoviesData', () => {
       const expectedArguments = ['https://rancid-tomatillos.herokuapp.com/api/v1/login', options]
       getUserInfo(mockUser);
       expect(window.fetch).toHaveBeenCalledWith(...expectedArguments)
-    })
-  })
+    });
+  });
+
+  describe('getUserRatings', () => {
+    let mockUserId = 42
+    let mockResponse = [{
+      id: 726,
+      user_id: 20,
+      movie_id: 21,
+      rating: 4,
+      created_at: "2020-02-21T01:32:41.615Z",
+      updated_at: "2020-02-21T01:32:41.615Z"
+    }]
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        });
+      });
+    });
+
+    it('should fetch with correct url', () => {
+      getUserRatings(mockUserId);
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/users/42/ratings')
+    });
+
+    it('should return an array of ratings', () => {
+      getUserRatings(mockUserId)
+      .then(ratings => expect(ratings).toEqual(mockResponse))
+    });
+  });
 });
