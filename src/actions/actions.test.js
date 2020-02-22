@@ -52,6 +52,21 @@ describe('actions', () => {
     const result = actions.updateSelectedMovie(movie);
 
     expect(result).toEqual(expectedAction);
+  });
+
+  it('should have a type of LOGOUT_USER', () => {
+    const user = {
+      email: "sam@turing.io",
+      id: 20,
+      name: "Sam"
+    }
+    const expectedAction = {
+      type: 'LOGOUT_USER',
+      user
+    }
+    const result = actions.logoutUser(user);
+
+    expect(result).toEqual(expectedAction);
   })
 
 })
