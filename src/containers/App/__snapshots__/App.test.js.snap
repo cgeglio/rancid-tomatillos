@@ -10,8 +10,7 @@ exports[`App App container/component should match the snapshot 1`] = `
     <Connect(MoviesContainer) />
   </Route>
   <Route
-    exact={true}
-    path="/movie_details"
+    path="/movies/:id"
   >
     <Connect(Nav) />
     <Connect(MovieDetails) />

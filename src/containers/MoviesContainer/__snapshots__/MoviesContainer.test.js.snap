@@ -24,7 +24,7 @@ exports[`MoviesContainer MoviesContainer container/component should match the sn
         }
       }
       saveSelectedMovieToStore={[Function]}
-      user={true}
+      userLoggedIn={true}
     />
   </section>
   <section
@@ -47,6 +47,7 @@ exports[`MoviesContainer MoviesContainer container/component should match the sn
         }
       }
       saveSelectedMovieToStore={[Function]}
+      userLoggedIn={true}
     />
   </section>
 </section>

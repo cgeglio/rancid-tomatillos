@@ -17,21 +17,27 @@ exports[`MoviePreview should match the snapshot 1`] = `
       <p
         className="preview-rating"
       >
-        5
+        5.0
       </p>
       <img
         className="rating-lemon"
         src="lemon.png"
       />
     </div>
-    <button
-      className="preview-rating-button"
+    <Link
+      to="/login"
     >
-      Rate
-    </button>
+      <button
+        className="preview-rating-button"
+        onClick={[Function]}
+        type="button"
+      >
+        Rate
+      </button>
+    </Link>
   </div>
   <Link
-    to="/movie_details"
+    to="/login"
   >
     <img
       alt="movie poster"
