@@ -67,6 +67,24 @@ describe('actions', () => {
     const result = actions.logoutUser(user);
 
     expect(result).toEqual(expectedAction);
-  })
+  });
+
+  it('should have a type of GET_RATINGS', () => {
+    const ratings = [{
+      id: 726,
+      user_id: 20,
+      movie_id: 21,
+      rating: 4,
+      created_at: "2020-02-21T01:32:41.615Z",
+      updated_at: "2020-02-21T01:32:41.615Z"
+    }]
+    const expectedAction = {
+      type: 'GET_RATINGS',
+      ratings
+    }
+    const result = actions.getRatings(ratings);
+
+    expect(result).toEqual(expectedAction);
+  });
 
 })
