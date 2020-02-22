@@ -24,17 +24,33 @@
   z-index: 100;
 }
 
+.preview-user-rating {
+  align-self: flex-end;
+}
+
 .rating-lemon {
   position: absolute;
   width: 56px;
   z-index: 90;
 }
 
+.user-rating-bundle,
 .rating-bundle {
   align-items: center;
-  display: flex;
+  display:flex;
   justify-content: center;
   margin-left: 2%;
+}
+
+.user-rating-bundle {
+  margin-left: 50%;
+  margin-right: 2%;
+}
+
+.user-rating-lemon {
+  position: absolute;
+  width: 56px;
+  z-index: 90;
 }
 
 .preview-rating-button {
