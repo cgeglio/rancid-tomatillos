@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './MoviePreview.css';
 
-const MoviePreview = ({ movie }) => {
+const MoviePreview = ({ movie, saveSelectedMovieToStore }) => {
   return (
-    <article className='movie-preview-container'>
+    <article onClick={ () => saveSelectedMovieToStore(movie) } className='movie-preview-container'>
       <p className='preview-avg-rating'>{movie.average_rating}</p>
-      <img src={movie.poster_path} alt='movie poster' className='movie-poster-image'/>
+      <Link to={`/movie_details`}><img src={movie.poster_path} alt='movie poster' className='movie-poster-image'/></Link>
     </article>
   )
 }
