@@ -17,3 +17,8 @@ export const getRatings = ratings => ({
   type: 'GET_RATINGS',
   ratings
 })
+
+export const removeRatings = ratings => ({
+  type: 'REMOVE_RATINGS',
+  ratings
+})
