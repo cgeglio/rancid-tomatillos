@@ -4,13 +4,12 @@ import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import LoginForm from '../../containers/LoginForm/LoginForm'
 import Nav from '../Nav/Nav';
 import MovieDetails from '../MovieDetails/MovieDetails';
-import Loading from '../Loading/Loading';
+import Loading from '../../Components/Loading/Loading';
 import './App.css';
 import { connect } from 'react-redux'
 
 
 export class App extends Component {
-
   render() {
     return(
        <main>
@@ -18,9 +17,13 @@ export class App extends Component {
          <Nav />
          <MoviesContainer />
        </Route>
-       <Route exact path='/movie_details'>
-        <Nav />
-         <MovieDetails />
+       <Route path='/movies/:id'>
+          {!this.props.user.id ? <Redirect to="/" /> : (
+          <>
+           <Nav />
+           <MovieDetails />
+          </>
+         )}
        </Route>
        <Route exact path='/login'>
          {this.props.user.id ? <Redirect to='/' /> :

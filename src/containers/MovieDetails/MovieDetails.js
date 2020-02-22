@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './MovieDetails.css';
 import { connect } from 'react-redux';
 
-class MovieDetails extends Component {
+export class MovieDetails extends Component {
 
   formatDate = (releaseDate) => {
      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -31,7 +31,7 @@ class MovieDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   selectedMovie: state.selectedMovieReducer
 })
 

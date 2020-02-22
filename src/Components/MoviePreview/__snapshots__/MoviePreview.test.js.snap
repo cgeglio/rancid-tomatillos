@@ -3,19 +3,47 @@
 exports[`MoviePreview should match the snapshot 1`] = `
 <article
   className="movie-preview-container"
+  onClick={[Function]}
 >
   <p>
     2020/10/10
   </p>
-  <p
-    className="preview-avg-rating"
+  <div
+    className="ratings"
   >
-    5
-  </p>
-  <img
-    alt="movie poster"
-    className="movie-poster-image"
-    src="url"
-  />
+    <div
+      className="rating-bundle"
+    >
+      <p
+        className="preview-rating"
+      >
+        5.0
+      </p>
+      <img
+        className="rating-lemon"
+        src="lemon.png"
+      />
+    </div>
+    <Link
+      to="/login"
+    >
+      <button
+        className="preview-rating-button"
+        onClick={[Function]}
+        type="button"
+      >
+        Rate
+      </button>
+    </Link>
+  </div>
+  <Link
+    to="/login"
+  >
+    <img
+      alt="movie poster"
+      className="movie-poster-image"
+      src="url"
+    />
+  </Link>
 </article>
 `;
