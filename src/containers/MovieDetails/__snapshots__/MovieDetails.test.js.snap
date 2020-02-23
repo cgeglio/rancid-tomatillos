@@ -104,7 +104,24 @@ exports[`MovieDetails MovieDetails container/component should match the snapshot
     <p
       className="movie-number"
     >
-      average rating: 
+      <span
+        className="bold-text"
+      >
+        Average Rating:
+      </span>
+       
+      8.0
+    </p>
+    <p
+      className="movie-number"
+    >
+      <span
+        className="bold-text"
+      >
+        My Rating:
+      </span>
+       
+      5
     </p>
   </div>
 </article>
