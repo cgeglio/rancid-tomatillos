@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesContainer should match the snapshot 1`] = `
+<section
+  className="movies-display-container"
+>
+  <section
+    className="movies-heading"
+  >
+    <h3>
+      Highy Rated Movies
+    </h3>
+  </section>
+  <section
+    className="top-rated-movies"
+  >
+    <MoviePreview
+      key="29"
+      movie={
+        Object {
+          "average_rating": 1,
+          "backdrop_path": "https://image.tmdb.org/t/p/original//n3UanIvmnBlH531pykuzNs4LbH6.jpg",
+          "id": 29,
+          "overview": "American car designer",
+          "poster_path": "https://image.tmdb.org/t/p/original//6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+          "release_date": "2019-11-13",
+          "title": "Ford v Ferrari",
+          "user_rating": 0,
+        }
+      }
+      saveSelectedMovieToStore={[Function]}
+      user={true}
+    />
+  </section>
+  <section
+    className="movies-heading"
+  >
+    <h3>
+      All Movies
+    </h3>
+  </section>
+  <section
+    className="bottom-display-section"
+  >
+    <MoviePreview
+      date="November 13, 2019"
+      key="29"
+      movie={
+        Object {
+          "average_rating": 1,
+          "backdrop_path": "https://image.tmdb.org/t/p/original//n3UanIvmnBlH531pykuzNs4LbH6.jpg",
+          "id": 29,
+          "overview": "American car designer",
+          "poster_path": "https://image.tmdb.org/t/p/original//6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+          "release_date": "2019-11-13",
+          "title": "Ford v Ferrari",
+          "user_rating": 0,
+        }
+      }
+      saveSelectedMovieToStore={[Function]}
+    />
+  </section>
+</section>
+`;
