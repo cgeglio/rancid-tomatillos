@@ -44,7 +44,7 @@ export const postRating = (userId, movieId, rating) => {
       }),
     headers: {'Content-Type': 'application/json'}
   }
-  fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`, options)
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`, options)
     .then(res => {
     if(!res.ok) {
       throw Error('Something is not right, try again later')
@@ -53,7 +53,7 @@ export const postRating = (userId, movieId, rating) => {
 }
 
 export const deleteRating = (userId, ratingId) => {
-  fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings/${ratingId}`, {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings/${ratingId}`, {
   method: "DELETE",
   })
   .then(response => {
