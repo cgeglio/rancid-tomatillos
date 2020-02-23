@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './MovieDetails.css';
 import { connect } from 'react-redux';
 import { getRatings } from '../../actions';
+import { postRating } from '../../apiCalls';
+import { getUserRatings } from '../../apiCalls';
+import { deleteRating } from '../../apiCalls'
 
 export class MovieDetails extends Component {
   constructor(props) {
@@ -26,47 +29,22 @@ export class MovieDetails extends Component {
     } else {
       const ratingId = this.findMovieRatingId(movieId)
       if (!ratingId) {
-        this.makeRatingRequest(userId, movieId, rating )
+        postRating(userId, movieId, rating )
       } else {
         this.makeDeleteRequest(userId, ratingId, movieId, rating)
       }
     }
   }
 
-  makeRatingRequest = (userId, movieId, rating) => {
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        movie_id: movieId,
-        rating: rating
-        }),
-      headers: {'Content-Type': 'application/json'}
-    }
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`, options)
-      .then(res => {
-      if(!res.ok) {
-        throw Error('Something is not right, try again later')
-      }
-      return res.json()})
-  }
-
   makeDeleteRequest = (userId, ratingId, movieId, rating) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings/${ratingId}`, {
-    method: "DELETE",
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw Error('Error Message');
-      }
-    })
-    .then( () => this.getUserRatings(userId, movieId, rating ))
+    deleteRating(userId, ratingId)
+    .then( () => this.updateRatings(userId, movieId, rating ))
   }
 
-  getUserRatings = (userId, movieId, rating ) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
-      .then(response => response.json())
+  updateRatings = (userId, movieId, rating ) => {
+    getUserRatings(userId)
       .then(ratings => this.props.addUserRatings(ratings.ratings))
-      .then(() => this.makeRatingRequest(userId, movieId, rating ))
+      .then(() => postRating(userId, movieId, rating ))
       .catch(error => console.log(error))
   }
 
@@ -104,7 +82,8 @@ export class MovieDetails extends Component {
             </select>
             <button className='submit-rating-button' onClick={() => this.submitRating(this.props.user.id, this.props.selectedMovie.movie.id, this.state.ratingDropbox)}>submit rating</button>
           </div>
-          <p className='movie-number'>average rating: {this.props.selectedMovie.movie.average_rating}</p>
+          <p className='movie-number'><span className='bold-text'>Average Rating:</span> {this.props.selectedMovie.movie.average_rating.toFixed(1)}</p>
+          <p className='movie-number'><span className='bold-text'>My Rating:</span> {this.props.selectedMovie.movie.user_rating ? this.props.selectedMovie.movie.user_rating : 'Add Your Rating Above!'}</p>
         </div>
       </article>
     )
