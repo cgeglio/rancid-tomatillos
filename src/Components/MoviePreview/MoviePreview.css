@@ -1,3 +1,4 @@
+
 .movie-poster-image {
   height: 300px;
   width: 200px;
@@ -20,12 +21,13 @@
   font-size: 130%;
   font-weight: bolder;
   height: 20px;
-  padding: 12px;
+  padding: 10px 12px 0 12px;
   z-index: 100;
 }
 
 .preview-user-rating {
   align-self: flex-end;
+  padding: 10px 15px 0 12px;
 }
 
 .rating-lemon {
@@ -38,6 +40,7 @@
 .rating-bundle {
   align-items: center;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   margin-left: 2%;
 }
@@ -85,4 +88,17 @@
   position: relative;
   top: 15%;
   width: 180px;
+}
+
+.user-rating-label,
+.avg-rating-label {
+  position: relative;
+  width: 20px;
+  height: 10px;
+  font-size: .6em;
+  z-index: 100;
+}
+
+.user-rating-label {
+  padding-right: 5px;
 }

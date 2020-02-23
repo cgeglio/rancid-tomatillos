@@ -1,8 +1,7 @@
-
-export const selectedMovieReducer = (state = {}, action) => {
+export const selectedMovie = (state = {}, action) => {
   switch(action.type) {
     case 'UPDATE_SELECTED_MOVIE':
-      return action
+      return action.movie
     default:
       return state;
   }
