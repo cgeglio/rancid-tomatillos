@@ -10,7 +10,7 @@ import { deleteRating } from '../../apiCalls'
 export class MovieDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {ratingDropbox: null}
+    this.state = {ratingDropbox: null, userRating: this.props.selectedMovie.user_rating}
   }
 
   formatDate = (releaseDate) => {
@@ -24,6 +24,7 @@ export class MovieDetails extends Component {
   }
 
   submitRating = (userId, movieId, rating) => {
+    this.setState({userRating: rating})
     if (!this.state.ratingDropbox) {
       window.alert(`Please select a rating number to submit!`)
     } else {
@@ -60,12 +61,12 @@ export class MovieDetails extends Component {
   render() {
     return (
       <article className='movie-details-container'>
-        <img src={this.props.selectedMovie.movie.backdrop_path} alt='movie backdrop' className='movie-backdrop'/>
+        <img src={this.props.selectedMovie.backdrop_path} alt='movie backdrop' className='movie-backdrop'/>
         <div className='movie-details'>
           <Link to={'/'}><button className='close-button'>X</button></Link>
-          <h1 className='movie-title'>{this.props.selectedMovie.movie.title}</h1>
-          <p>{this.formatDate(this.props.selectedMovie.movie.release_date)}</p>
-          <p className='movie-overview'>{this.props.selectedMovie.movie.overview}</p>
+          <h1 className='movie-title'>{this.props.selectedMovie.title}</h1>
+          <p>{this.formatDate(this.props.selectedMovie.release_date)}</p>
+          <p className='movie-overview'>{this.props.selectedMovie.overview}</p>
           <div className='rating-container'>
             <select onChange={e => this.updateRatingState(e.target.value)} id='rating-dropbox'>
               <option value={null}>rate!</option>
@@ -80,10 +81,10 @@ export class MovieDetails extends Component {
               <option value={9}>9</option>
               <option value={10}>10</option>
             </select>
-            <button className='submit-rating-button' onClick={() => this.submitRating(this.props.user.id, this.props.selectedMovie.movie.id, this.state.ratingDropbox)}>submit rating</button>
+            <button className='submit-rating-button' onClick={() =>  this.submitRating(this.props.user.id, this.props.selectedMovie.id, this.state.ratingDropbox)}>submit rating</button>
           </div>
-          <p className='movie-number'><span className='bold-text'>Average Rating:</span> {this.props.selectedMovie.movie.average_rating.toFixed(1)}</p>
-          <p className='movie-number'><span className='bold-text'>My Rating:</span> {this.props.selectedMovie.movie.user_rating ? this.props.selectedMovie.movie.user_rating : 'Add Your Rating Above!'}</p>
+          <p className='movie-number'><span className='bold-text'>Average Rating:</span> {this.props.selectedMovie.average_rating ? this.props.selectedMovie.average_rating.toFixed(1) : 0}</p>
+          <p className='movie-number'><span className='bold-text'>My Rating:</span> {this.state.userRating ? this.state.userRating : 'Add Your Rating Above!'}</p>
         </div>
       </article>
     )
@@ -91,7 +92,7 @@ export class MovieDetails extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  selectedMovie: state.selectedMovieReducer,
+  selectedMovie: state.selectedMovie,
   user: state.user,
   ratings: state.ratings
 })
