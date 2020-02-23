@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+
 exports[`MoviesContainer should match the snapshot 1`] = `
+
 <section
   className="movies-display-container"
 >
@@ -15,6 +17,7 @@ exports[`MoviesContainer should match the snapshot 1`] = `
     className="top-rated-movies"
   >
     <MoviePreview
+
       key="29"
       movie={
         Object {

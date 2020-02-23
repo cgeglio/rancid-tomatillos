@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should render a Loading component 1`] = `
+<section>
+  <p
+    className="loading-text"
+  >
+    loading...
+  </p>
+  <img
+    alt="loading lemon"
+    className="lemon-img"
+    src="lemon.png"
+  />
+</section>
+`;

@@ -63,8 +63,7 @@
   height: 50px;
 }
 
-a {
-  font-weight: bold;
+.login-button {
   height: 35px !important;
   padding-top: 13px;
   text-align: center;

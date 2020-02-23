@@ -29,14 +29,20 @@ export class MoviesContainer extends Component {
     this.props.addSelectedMovieToStore(movie);
   }
 
+  findUser = () => {
+    return this.props.user.id ? true : false
+  }
+
   render() {
 
     let allMovies = this.props.movies.map(movie => {
       movie.user_rating = this.props.ratings ? this.findUserRating(movie.id) : 0;
-      return <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key={movie.id} date={this.formatDate(movie.release_date)} movie={movie}/>})
+      return <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key={movie.id} userLoggedIn={this.findUser()} movie={movie}/>
+    })
 
     let sortedMovies = this.props.movies.sort((a, b) => a.average_rating - b.average_rating)
-    let topMovies = sortedMovies.map(movie => <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} user={this.props.user.id ? true : false} key={movie.id} movie={movie}/>)
+
+    let topMovies = sortedMovies.map(movie => <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} userLoggedIn={this.findUser()} key={movie.id} movie={movie}/>)
 
     return (
       !this.props.movies ? <p>loading</p> : (

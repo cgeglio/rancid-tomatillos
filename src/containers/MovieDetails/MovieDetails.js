@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import './MovieDetails.css';
 import { connect } from 'react-redux';
 
-class MovieDetails extends Component {
+export class MovieDetails extends Component {
+
+  formatDate = (releaseDate) => {
+     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let date = releaseDate.split('-')
+    return `${monthNames[date[1] - 1]} ${date[2]}, ${date[0]}`;
+  }
+
   render() {
     return (
       <article className='movie-details-container'>
@@ -11,7 +18,7 @@ class MovieDetails extends Component {
         <div className='movie-details'>
           <Link to={'/'}><button className='close-button'>X</button></Link>
           <h1 className='movie-title'>{this.props.selectedMovie.movie.title}</h1>
-          <p>{this.props.selectedMovie.movie.release_date}</p>
+          <p>{this.formatDate(this.props.selectedMovie.movie.release_date)}</p>
           <p className='movie-overview'>{this.props.selectedMovie.movie.overview}</p>
           <div className='rating-container'>
             <button className='rating-button'>+</button>
@@ -24,7 +31,7 @@ class MovieDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   selectedMovie: state.selectedMovieReducer
 })
 

@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './MoviePreview.css';
+import lemon from '../../Assets/lemon.png';
 
-const MoviePreview = ({ date, movie, user, saveSelectedMovieToStore  }) => {
-  return (
-    <article onClick={ () => saveSelectedMovieToStore(movie) } className='movie-preview-container'>
-      <p>{date}</p>
-      <div className='ratings'>
-        <p className='preview-rating'>{movie.average_rating}</p>
-        {movie.user_rating ? <p className='preview-rating'>{movie.user_rating}</p> : <Link to={!user ? '/login' : `/movies/${movie.id}`} className='preview-rating-button'>Rate</Link>}
-      </div>
-      <Link to={`/movie_details`}><img src={movie.poster_path} alt='movie poster' className='movie-poster-image'/></Link>
-    </article>
-  )
+class MoviePreview extends Component {
+
+  determinePath = () => {
+    return !this.props.userLoggedIn ? '/login' : `/movies/${this.props.movie.id}`;
+  }
+
+  render() {
+    return (
+      <article className='movie-preview-container' onClick={() => { this.props.saveSelectedMovieToStore(this.props.movie) }}>
+        <p>{this.props.date}</p>
+        <div className='ratings'>
+          <div className='rating-bundle'><p className='preview-rating'>{this.props.movie.average_rating.toFixed(1)}</p>
+          <img src={lemon} className='rating-lemon'/></div>
+          {this.props.movie.user_rating ? <div className='user-rating-bundle'><p className='preview-rating'>{this.props.movie.user_rating}</p><img src={lemon} className='rating-lemon'/></div> : <Link to={this.determinePath()} ><button type="button" onClick={() => { this.props.saveSelectedMovieToStore(this.props.movie) }} className='preview-rating-button'>Rate</button></Link>}
+        </div>
+        <Link to={this.determinePath()}><img src={this.props.movie.poster_path} alt='movie poster' className='movie-poster-image'/></Link>
+      </article>
+    )
+  }
 }
 
 export default MoviePreview;

@@ -5,7 +5,7 @@ import { updateUser } from '../../actions';
 import { getRatings } from '../../actions';
 import { getUserInfo, getUserRatings } from '../../apiCalls';
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
   constructor() {
     super();
     this.state= {email: '', password: '', error: false}
@@ -66,7 +66,7 @@ class LoginForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addUser: user => dispatch(updateUser(user)),
   addUserRatings: ratings => dispatch(getRatings(ratings))
 })
