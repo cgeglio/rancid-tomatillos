@@ -34,3 +34,31 @@ export const getUserRatings = userId => {
     return response.json()
   })
 }
+
+export const postRating = (userId, movieId, rating) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      movie_id: movieId,
+      rating: rating
+      }),
+    headers: {'Content-Type': 'application/json'}
+  }
+  fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`, options)
+    .then(res => {
+    if(!res.ok) {
+      throw Error('Something is not right, try again later')
+    }
+    return res.json()})
+}
+
+export const deleteRating = (userId, ratingId) => {
+  fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings/${ratingId}`, {
+  method: "DELETE",
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw Error('Error Message');
+    }
+  })
+}
