@@ -35,7 +35,7 @@ export class MoviesContainer extends Component {
   }
 
   updateUserRatings = () => {
-    return !this.props.user ? null : (
+    return !this.props.user.id ? null : (
     getUserRatings(this.props.user.id)
       .then(ratings => this.props.addUserRatings(ratings.ratings))
       .catch(error => console.log(error))
