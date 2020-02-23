@@ -5,15 +5,21 @@ import { connect } from 'react-redux';
 import { getMovies } from '../../actions'
 import { updateSelectedMovie } from '../../actions';
 import { getRatings } from '../../actions';
+import { getMoviesData } from '../../apiCalls'
 
 export class MoviesContainer extends Component {
 
   componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
-      .then(response => response.json())
-      .then(movies => {
-        this.props.addMoviesToStore(movies.movies)})
-      .catch(error => console.log(error))
+    getMoviesData()
+    .then(movies => {
+      this.props.addMoviesToStore(movies.movies)})
+    .catch(error => console.log(error))
+  }
+
+  formatDate(releaseDate) {
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let date = releaseDate.split('-')
+    return `${monthNames[date[1] - 1]} ${date[2]}, ${date[0]}`;
   }
 
   findUserRating = movie => {
@@ -64,7 +70,7 @@ export class MoviesContainer extends Component {
           {allMovies}
         </section>
     </section>
-  ))
+    ))
   }
 }
 

@@ -1,23 +1,106 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { MoviesContainer, mapStateToProps, mapDispatchToProps } from './MoviesContainer';
+import { MoviesContainer, mapStateToProps, mapDispatchToProps } from './MoviesContainer.js';
 import { shallow } from 'enzyme';
-import { addMoviesToStore } from '../../actions'
-import { addSelectedMovieToStore } from '../../actions'
+import { getMoviesData } from '../../apiCalls';
+import { updateSelectedMovie, getMovies } from '../../actions/index.js';
+
+jest.mock('../../apiCalls')
 
 describe('MoviesContainer', () => {
-  describe('MoviesContainer container/component', () => {
-    it('should match the snapshot', () => {
-      const wrapper = shallow(<MoviesContainer movies={[{title: 'Frozen II', id: 30}]} user={{name:'Robbie', id: 7}}/>);
-      expect(wrapper).toMatchSnapshot();
+
+  beforeEach(() => {
+    getMoviesData.mockImplementation(() => {
+      return Promise.resolve([{
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "https://image.tmdb.org/t/p/original//6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+        backdrop_path: "https://image.tmdb.org/t/p/original//n3UanIvmnBlH531pykuzNs4LbH6.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }]);
     });
   });
 
-  describe('mapStateToProps', () => {
+  it('should match the snapshot', () => {
+    const user = {
+      email: "sam@turing.io",
+      id: 20,
+      name: "Sam"
+    }
+    const wrapper = shallow(<MoviesContainer user={user} movies={[{
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "https://image.tmdb.org/t/p/original//6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+        backdrop_path: "https://image.tmdb.org/t/p/original//n3UanIvmnBlH531pykuzNs4LbH6.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }]}/>)
+    expect(wrapper).toMatchSnapshot();
+  });
 
+  describe('mapStateToProps', () => {
+    it('should return an array of movie objects', () => {
+      const mockMoviesArray = [{
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }]
+      const mockState = {
+        movies: mockMoviesArray
+      }
+      const expected = {
+        movies: mockMoviesArray}
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expected);
+    });
   });
 
   describe('mapDispatchToProps', () => {
+    it('should call dispatch with updateSelectedMovie', () => {
+      const mockDispatch = jest.fn();
+      const selectedMovie = {
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }
+      const actionToDispatch = updateSelectedMovie(selectedMovie);
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.addSelectedMovieToStore(selectedMovie)
 
-  })
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should call dispatch with getMovies', () => {
+      const mockDispatch = jest.fn();
+      const moviesArr = [{
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }]
+      const actionToDispatch = getMovies(moviesArr)
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.addMoviesToStore(moviesArr)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    });
+  });
 });

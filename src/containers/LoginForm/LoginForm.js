@@ -3,6 +3,7 @@ import './LoginForm.css';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions';
 import { getRatings } from '../../actions';
+import { getUserInfo, getUserRatings } from '../../apiCalls';
 
 export class LoginForm extends Component {
   constructor() {
@@ -27,26 +28,16 @@ export class LoginForm extends Component {
   }
 
   fetchUserInfo = user => {
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(user),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    return fetch('https://rancid-tomatillos.herokuapp.com/api/v1/login', options)
-      .then(response => response.json())
+    getUserInfo(user)
       .then(userInfo => {
         this.props.addUser(userInfo.user)
-        this.getUserRatings(userInfo.user.id)
+        this.fetchUserRatings(userInfo.user.id)
       })
       .catch(error => this.setState({error: true}))
   }
 
-  getUserRatings = (userId) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
-      .then(response => response.json())
+  fetchUserRatings = (userId) => {
+    getUserRatings(userId)
       .then(ratings => this.props.addUserRatings(ratings.ratings))
       .catch(error => console.log(error))
     }
