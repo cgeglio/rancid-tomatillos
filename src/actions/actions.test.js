@@ -31,7 +31,7 @@ describe('actions', () => {
       user
     }
     const result = actions.updateUser(user)
-    
+
     expect(result).toEqual(expectedAction)
   });
 
@@ -50,7 +50,6 @@ describe('actions', () => {
       movie
     };
     const result = actions.updateSelectedMovie(movie);
-
     expect(result).toEqual(expectedAction);
   });
 
