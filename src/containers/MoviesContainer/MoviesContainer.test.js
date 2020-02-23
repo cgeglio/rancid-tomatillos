@@ -2,6 +2,7 @@ import React from 'react';
 import { MoviesContainer, mapStateToProps, mapDispatchToProps } from './MoviesContainer.js';
 import { shallow } from 'enzyme';
 import { getMoviesData } from '../../apiCalls';
+import { updateSelectedMovie, getMovies } from '../../actions/index.js';
 
 jest.mock('../../apiCalls')
 
@@ -18,9 +19,9 @@ describe('MoviesContainer', () => {
         overview: "American car designer",
         average_rating: 1,
         user_rating: 0
-      }])
-    })
-  })
+      }]);
+    });
+  });
 
   it('should match the snapshot', () => {
     const user = {
@@ -39,7 +40,7 @@ describe('MoviesContainer', () => {
         user_rating: 0
       }]}/>)
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 
   describe('mapStateToProps', () => {
     it('should return an array of movie objects', () => {
@@ -63,5 +64,43 @@ describe('MoviesContainer', () => {
     });
   });
 
-  describe('mapDispatchToProps')
-})
+  describe('mapDispatchToProps', () => {
+    it('should call dispatch with updateSelectedMovie', () => {
+      const mockDispatch = jest.fn();
+      const selectedMovie = {
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }
+      const actionToDispatch = updateSelectedMovie(selectedMovie);
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.addSelectedMovieToStore(selectedMovie)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should call dispatch with getMovies', () => {
+      const mockDispatch = jest.fn();
+      const moviesArr = [{
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }]
+      const actionToDispatch = getMovies(moviesArr)
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.addMoviesToStore(moviesArr)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    });
+  });
+});
