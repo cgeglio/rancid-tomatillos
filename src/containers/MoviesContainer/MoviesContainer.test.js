@@ -40,4 +40,28 @@ describe('MoviesContainer', () => {
       }]}/>)
     expect(wrapper).toMatchSnapshot();
   })
+
+  describe('mapStateToProps', () => {
+    it('should return an array of movie objects', () => {
+      const mockMoviesArray = [{
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }]
+      const mockState = {
+        movies: mockMoviesArray
+      }
+      const expected = {
+        movies: mockMoviesArray}
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expected);
+    });
+  });
+
+  describe('mapDispatchToProps')
 })
