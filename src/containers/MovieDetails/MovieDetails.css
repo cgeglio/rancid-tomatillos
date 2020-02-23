@@ -68,8 +68,11 @@
 }
 
 .close-button:hover,
-.rating-button:hover {
+.submit-rating-button:hover {
   cursor: pointer;
+  transform: scale(1.06);
+  transition: transform .5s;
+  box-shadow: 0 0 2px 1px gray;
 }
 
 .rating-container {
@@ -81,6 +84,10 @@
 }
 
 .movie-number {
-  margin: 0% 10% 0% 10%;
+  margin: 2% 10% 2% 10%;
   font-size: 130%;
+}
+
+.bold-text {
+  font-weight: bold;
 }
