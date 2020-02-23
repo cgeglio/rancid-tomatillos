@@ -6,13 +6,13 @@ import { getMovies } from '../../actions'
 import { updateSelectedMovie } from '../../actions';
 import { getRatings } from '../../actions';
 import { getMoviesData } from '../../apiCalls'
+import { getUserRatings } from '../../apiCalls'
 
 export class MoviesContainer extends Component {
 
-  componentDidMount() {
+  componentDidMount()  {
     getMoviesData()
-    .then(movies => {
-      this.props.addMoviesToStore(movies.movies)})
+    .then(movies => this.props.addMoviesToStore(movies.movies))
     .catch(error => console.log(error))
   }
 
@@ -34,16 +34,17 @@ export class MoviesContainer extends Component {
     return this.props.user.id ? true : false
   }
 
-  getUserRatings = () => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${this.props.user.id}/ratings`)
-      .then(response => response.json())
+  updateUserRatings = () => {
+    return !this.props.user ? null : (
+    getUserRatings(this.props.user.id)
       .then(ratings => this.props.addUserRatings(ratings.ratings))
       .catch(error => console.log(error))
+    )
     }
 
   render() {
 
-    this.getUserRatings()
+    this.updateUserRatings();
 
     let allMovies = this.props.movies.map(movie => {
       movie.user_rating = this.props.ratings ? this.findUserRating(movie.id) : 0;
