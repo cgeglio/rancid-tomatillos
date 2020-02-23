@@ -77,14 +77,14 @@ export class MoviesContainer extends Component {
 
 export const mapStateToProps = (state) => ({
   movies: state.movies,
-  selectedMovie: state.selectedMovieReducer,
+  selectedMovie: state.selectedMovie,
   user: state.user,
   ratings: state.ratings
 })
 
 export const mapDispatchToProps = (dispatch) =>({
   addMoviesToStore: movies => dispatch(getMovies(movies)),
-  addSelectedMovieToStore: movie => dispatch(updateSelectedMovie(movie)),
+  addSelectedMovieToStore: selectedMovie => dispatch(updateSelectedMovie(selectedMovie)),
   addUserRatings: ratings => dispatch(getRatings(ratings))
 })
 
