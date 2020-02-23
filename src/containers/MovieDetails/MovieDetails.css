@@ -28,7 +28,7 @@
 }
 
 .close-button,
-.rating-button {
+.submit-rating-button {
   margin: 40% 0% 0% 670%;
   height: 30px;
   width: 30px;
@@ -39,9 +39,22 @@
   font-weight: bolder;
 }
 
-.rating-button {
-  margin: 0%;
+.submit-rating-button {
+  margin: 4%;
+  width: 150px;
+  border-radius: 25px;
   background-color: #fff590;
+}
+
+.submit-rating-button:hover,
+#rating-dropbox:hover {
+  cursor: pointer;
+}
+
+#rating-dropbox {
+  height: 30px;
+  width: 70px;
+  font-size: 100%;
 }
 
 .movie-title {

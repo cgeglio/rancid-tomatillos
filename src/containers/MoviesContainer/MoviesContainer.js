@@ -4,6 +4,7 @@ import MoviePreview from '../../Components/MoviePreview/MoviePreview';
 import { connect } from 'react-redux';
 import { getMovies } from '../../actions'
 import { updateSelectedMovie } from '../../actions';
+import { getRatings } from '../../actions';
 import { getMoviesData } from '../../apiCalls'
 
 export class MoviesContainer extends Component {
@@ -33,7 +34,16 @@ export class MoviesContainer extends Component {
     return this.props.user.id ? true : false
   }
 
+  getUserRatings = () => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${this.props.user.id}/ratings`)
+      .then(response => response.json())
+      .then(ratings => this.props.addUserRatings(ratings.ratings))
+      .catch(error => console.log(error))
+    }
+
   render() {
+
+    this.getUserRatings()
 
     let allMovies = this.props.movies.map(movie => {
       movie.user_rating = this.props.ratings ? this.findUserRating(movie.id) : 0;
@@ -73,7 +83,8 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) =>({
   addMoviesToStore: movies => dispatch(getMovies(movies)),
-  addSelectedMovieToStore: movie => dispatch(updateSelectedMovie(movie))
+  addSelectedMovieToStore: movie => dispatch(updateSelectedMovie(movie)),
+  addUserRatings: ratings => dispatch(getRatings(ratings))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);
