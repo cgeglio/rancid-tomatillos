@@ -30,8 +30,8 @@ describe('MoviesContainer', () => {
   });
 
   describe('mapStateToProps', () => {
-    it('should return an array of movie objects', () => {
-      const mockMoviesArray = [{
+    it('should return an array of movie objects, selectedMovie info, user info, and an array of ratings objects', () => {
+      const mockMovies = [{
         id: 29,
         title: "Ford v Ferrari",
         poster_path: "image.jpg",
@@ -42,10 +42,18 @@ describe('MoviesContainer', () => {
         user_rating: 0
       }]
       const mockState = {
-        movies: mockMoviesArray
+        movies: mockMovies,
+        selectedMovie: {movie: {title: 'Ford v Ferrari'}},
+        user: {name: 'Eric', id: 40},
+        ratings: [{rating: 5}, {rating: 6}],
+        actors: [{name: 'Christian Bale'}]
       }
       const expected = {
-        movies: mockMoviesArray}
+        movies: mockMovies,
+        selectedMovie: {movie: {title: 'Ford v Ferrari'}},
+        user: {name: 'Eric', id: 40},
+        ratings: [{rating: 5}, {rating: 6}],
+      }
       const mappedProps = mapStateToProps(mockState);
       expect(mappedProps).toEqual(expected);
     });
