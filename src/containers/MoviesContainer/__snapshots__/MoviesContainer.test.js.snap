@@ -1,8 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-
 exports[`MoviesContainer should match the snapshot 1`] = `
-
 <section
   className="movies-display-container"
 >
@@ -17,7 +15,6 @@ exports[`MoviesContainer should match the snapshot 1`] = `
     className="top-rated-movies"
   >
     <MoviePreview
-
       key="29"
       movie={
         Object {
@@ -32,7 +29,7 @@ exports[`MoviesContainer should match the snapshot 1`] = `
         }
       }
       saveSelectedMovieToStore={[Function]}
-      user={true}
+      userLoggedIn={true}
     />
   </section>
   <section
@@ -46,7 +43,6 @@ exports[`MoviesContainer should match the snapshot 1`] = `
     className="bottom-display-section"
   >
     <MoviePreview
-      date="November 13, 2019"
       key="29"
       movie={
         Object {
@@ -61,6 +57,7 @@ exports[`MoviesContainer should match the snapshot 1`] = `
         }
       }
       saveSelectedMovieToStore={[Function]}
+      userLoggedIn={true}
     />
   </section>
 </section>
