@@ -27,4 +27,3 @@ export const removeRatings = ratings => ({
   type: 'REMOVE_RATINGS',
   ratings
 })
-
