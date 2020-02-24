@@ -37,6 +37,19 @@ export class MovieDetails extends Component {
     }
   }
 
+  removeRating = (userId, movieId) => {
+    const ratingId = this.findMovieRatingId(movieId);
+    if (!ratingId) {
+      return
+    } else {
+      const rating = 0;
+      deleteRating(userId, ratingId)
+        .then(() => getUserRatings(userId))
+        .then(ratings => this.props.addUserRatings(ratings.ratings))
+        .then(() => this.setState({userRating: rating}))
+    }
+  }
+
   makeDeleteRequest = (userId, ratingId, movieId, rating) => {
     deleteRating(userId, ratingId)
     .then( () => this.updateRatings(userId, movieId, rating ))
@@ -81,10 +94,11 @@ export class MovieDetails extends Component {
               <option value={9}>9</option>
               <option value={10}>10</option>
             </select>
-            <button className='submit-rating-button' onClick={() =>  this.submitRating(this.props.user.id, this.props.selectedMovie.id, this.state.ratingDropbox)}>submit rating</button>
+            <button className='submit-rating-button' onClick={() =>  this.submitRating(this.props.user.id, this.props.selectedMovie.id, this.state.ratingDropbox)}>Submit Rating</button>
           </div>
           <p className='movie-number'><span className='bold-text'>Average Rating:</span> {this.props.selectedMovie.average_rating ? this.props.selectedMovie.average_rating.toFixed(1) : 0}</p>
           <p className='movie-number'><span className='bold-text'>My Rating:</span> {this.state.userRating ? this.state.userRating : 'Add Your Rating Above!'}</p>
+          <button className='submit-rating-button' onClick={() => this.removeRating(this.props.user.id, this.props.selectedMovie.id) }>Remove Rating</button>
         </div>
       </article>
     )
