@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 describe('App', () => {
   describe('App container/component', () => {
     it('should match the snapshot', () => {
-      const wrapper = shallow(<App user={{id:5}}/>);
+      const wrapper = shallow(<App movies={[{title: 'Frozen II'}]} user={{id:5}}/>);
       expect(wrapper).toMatchSnapshot();
     });
   });
