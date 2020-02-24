@@ -44,14 +44,18 @@
 
 .login-button,
 .logout-button {
-  background-color: #292c33;
   border: none;
   color: #fbe832;
   font-size: 100%;
   font-weight: bold;
-  height: 40px;
   text-decoration: none;
   width: 80px;
+}
+
+.logout-button {
+  background-color: #292c33;
+  height: 48px;
+  margin-top: -1px;
 }
 
 .login-button:hover,
@@ -60,13 +64,13 @@
   border: none;
   color: #292c33;
   cursor: pointer;
-  height: 50px;
 }
 
 .login-button {
-  height: 35px !important;
+  height: 36px !important;
   padding-top: 13px;
   text-align: center;
+  margin-top: -1px;
 }
 
 #welcome-message {

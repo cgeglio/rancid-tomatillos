@@ -5,7 +5,7 @@
 
 .movie-details-container {
   display: flex;
-  height: 70%;
+  height: 80%;
   width: 90%;
   background: rgb(255,237,48);
   background: linear-gradient(0deg, rgba(255,237,48,1) 0%, rgba(255,255,255,1) 64%);
@@ -27,8 +27,7 @@
   align-items: center;
 }
 
-.close-button,
-.submit-rating-button {
+.close-button {
   margin: 40% 0% 0% 670%;
   height: 30px;
   width: 30px;
@@ -39,16 +38,28 @@
   font-weight: bolder;
 }
 
-.submit-rating-button {
-  margin: 4%;
-  width: 150px;
-  border-radius: 25px;
-  background-color: #fff590;
+.rating-error-msg {
+  height: 2rem;
+  width: 100%;
+  display: flex;
+  color: red;
+  font-weight: bold;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 25px;
 }
 
-.submit-rating-button:hover,
-#rating-dropbox:hover {
-  cursor: pointer;
+.remove-rating-button,
+.submit-rating-button {
+  margin: 2% 4%;
+  width: 150px;
+  height: 30px;
+  border-radius: 25px;
+  color: #fff;
+  background-color: #292c33;
+  font-weight: bold;
+  border: none;
+  font-size: 1em;
 }
 
 #rating-dropbox {
@@ -68,6 +79,7 @@
 }
 
 .close-button:hover,
+.remove-rating-button:hover,
 .submit-rating-button:hover {
   cursor: pointer;
   transform: scale(1.06);
@@ -85,7 +97,7 @@
 
 .movie-number {
   margin: 2% 10% 2% 10%;
-  font-size: 130%;
+  font-size: 100%;
 }
 
 .bold-text {

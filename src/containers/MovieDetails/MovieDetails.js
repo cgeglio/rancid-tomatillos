@@ -10,7 +10,11 @@ import { deleteRating } from '../../apiCalls'
 export class MovieDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {ratingDropbox: null, userRating: this.props.selectedMovie.user_rating}
+    this.state = {
+      ratingDropbox: null, 
+      userRating: this.props.selectedMovie.user_rating,
+      errorMessage: ''
+    }
   }
 
   formatDate = (releaseDate) => {
@@ -26,7 +30,7 @@ export class MovieDetails extends Component {
   submitRating = (userId, movieId, rating) => {
     this.setState({userRating: rating})
     if (!this.state.ratingDropbox) {
-      window.alert(`Please select a rating number to submit!`)
+      this.setState({errorMessage: 'Please select a rating number to submit!'})
     } else {
       const ratingId = this.findMovieRatingId(movieId)
       if (!ratingId) {
@@ -80,6 +84,7 @@ export class MovieDetails extends Component {
           <h1 className='movie-title'>{this.props.selectedMovie.title}</h1>
           <p>{this.formatDate(this.props.selectedMovie.release_date)}</p>
           <p className='movie-overview'>{this.props.selectedMovie.overview}</p>
+            <p className='rating-error-msg'>{this.state.errorMessage}</p>
           <div className='rating-container'>
             <select onChange={e => this.updateRatingState(e.target.value)} id='rating-dropbox'>
               <option value={null}>rate!</option>
@@ -98,7 +103,7 @@ export class MovieDetails extends Component {
           </div>
           <p className='movie-number'><span className='bold-text'>Average Rating:</span> {this.props.selectedMovie.average_rating ? this.props.selectedMovie.average_rating.toFixed(1) : 0}</p>
           <p className='movie-number'><span className='bold-text'>My Rating:</span> {this.state.userRating ? this.state.userRating : 'Add Your Rating Above!'}</p>
-          <button className='submit-rating-button' onClick={() => this.removeRating(this.props.user.id, this.props.selectedMovie.id) }>Remove Rating</button>
+          <button className='remove-rating-button' onClick={() => this.removeRating(this.props.user.id, this.props.selectedMovie.id) }>Remove Rating</button>
         </div>
       </article>
     )

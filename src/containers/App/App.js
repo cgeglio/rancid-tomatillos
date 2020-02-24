@@ -18,14 +18,6 @@ export class App extends Component {
          {!this.props.movies.length && <Loading />}
          <MoviesContainer />
        </Route>
-       <Route path='/movies/:id'>
-          {!this.props.user.id ? <Redirect to="/" /> : (
-            <>
-           <Nav />
-           <MoviesContainer />
-           </>
-         )}
-         </Route>
          <Route exact path="/movies/:id">
             {!this.props.user.id ? <Redirect to="/login" /> : (
             <>
