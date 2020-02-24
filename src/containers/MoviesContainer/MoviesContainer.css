@@ -20,16 +20,16 @@
 }
 
 .top-rated-movies {
-  width: 98%;
+  width: 100%;
   display: flex;
   align-self: center;
-  align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
   height: 25rem;
   overflow-x: scroll;
-  background-image: url(../../Assets/movie-spotlight.jpg);
+  background-image: linear-gradient(rgba(24, 24, 24, 0.838), rgba(12, 12, 12, 0.831)),url(../../Assets/black-and-gold.jpg);
   background-size: cover;
+  background-position: top;
   background-repeat: no-repeat;
 }
 
