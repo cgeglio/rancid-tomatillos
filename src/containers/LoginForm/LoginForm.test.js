@@ -1,8 +1,10 @@
 import React from 'react';
 import { LoginForm, mapDispatchToProps } from './LoginForm';
 import { shallow } from 'enzyme';
-import { updateUser } from '../../actions';
-import { getRatings } from '../../actions';
+import { updateUser, getRatings } from '../../actions';
+import { getUserInfo, getUserRatings } from '../../apiCalls';
+
+jest.mock('../../apiCalls')
 
 describe('LoginForm', () => {
   describe('LoginForm container/component', () => {
@@ -25,7 +27,15 @@ describe('LoginForm', () => {
         },
         preventDefault: jest.fn()
       }
+      getUserInfo.mockImplementation(() => {
+      return Promise.resolve([{ id: 29, name: 'Robbie' }]);
     })
+
+      getUserRatings.mockImplementation(() => {
+      return Promise.resolve([{ id: 300, movie_id: 20, rating: 5}]);
+    });
+
+  });
 
     it('should match snapshot', () => {
       expect(wrapper).toMatchSnapshot();
@@ -41,7 +51,57 @@ describe('LoginForm', () => {
       expect(wrapper.state('error')).toEqual(false)
       wrapper.instance().verifyInputs(mockEvent);
       expect(wrapper.state('error')).toEqual(true)
-    })
+    });
+
+    it('should call fetchUserInfo when completeLogin is invoked', () => {
+      const mockState = {
+        email: 'sam@turing.io',
+        password: '123456',
+        error: false
+      }
+      const expected = {
+        email: 'sam@turing.io',
+        password: '123456'
+      }
+      wrapper.instance().setState(mockState);
+      wrapper.instance().fetchUserInfo = jest.fn()
+      wrapper.instance().completeLogin()
+      expect(wrapper.instance().fetchUserInfo).toHaveBeenCalledWith(expected)
+    });
+
+    it('should clear state when complete login is invoked', () => {
+      const defaultState = {
+        email: 'sam@turing.io',
+        password: '123456',
+        error: false
+      }
+      const expected = { email: '', password: '', error: false };
+      wrapper.instance().setState(defaultState);
+      wrapper.instance().completeLogin();
+      expect(wrapper.state()).toEqual(expected);
+    });
+
+    it('should fire off getUserInfo when fetchUserInfo is invoked', () => {
+      const mockUser = {name: 'Robbie'}
+      wrapper.instance().fetchUserInfo(mockUser)
+      expect(getUserInfo).toHaveBeenCalledWith(mockUser)
+    });
+
+    it('should fire off getUserRatings when fetchUserRatings is invoked', () => {
+      const mockUserId = 7
+      wrapper.instance().fetchUserRatings(mockUserId)
+      expect(getUserRatings).toHaveBeenCalledWith(mockUserId)
+    });
+
+    it('should fire off verifyInputs when login button is clicked', () => {
+    wrapper.instance().verifyInputs = jest.fn();
+    wrapper.instance().forceUpdate()
+    const mockEvent = {
+      preventDefault: jest.fn()
+    }
+    wrapper.find('.login-btn').simulate('click', mockEvent)
+    expect(wrapper.instance().verifyInputs).toHaveBeenCalled()
+    });
   });
 
   describe('mapDispatchToProps', () => {
