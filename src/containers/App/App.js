@@ -11,22 +11,22 @@ import { connect } from 'react-redux'
 
 export class App extends Component {
   render() {
-    return(
-       <main>
-       <Switch>
-         <Route exact path='/'>
+    return (
+    <main>
+      <Switch>
+         <Route exact path="/">
            <Nav />
            <MoviesContainer />
          </Route>
-         <Route path='/movies/:id'>
-            {!this.props.user.id ? <Redirect to="/" /> : (
+         <Route exact path="/movies/:id">
+            {!this.props.user.id ? <Redirect to="/login" /> : (
             <>
              <Nav />
              <MovieDetails />
             </>
            )}
          </Route>
-         <Route exact path='/login'>
+         <Route exact path="/login">
            {this.props.user.id ? <Redirect to='/' /> :
              <section className='login-page'>
                <h2 className='login-msg'>Get your ratings on.</h2>
@@ -36,7 +36,7 @@ export class App extends Component {
            }
          </Route>
          <Redirect to='/' />
-       </Switch>
+        </Switch>
       </main>
     )
   }
