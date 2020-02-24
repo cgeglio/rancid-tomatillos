@@ -59,7 +59,7 @@ export class MoviesContainer extends Component {
       !this.props.movies ? <p>loading</p> : (
       <section className='movies-display-container'>
         <section className='movies-heading'>
-          <h3>Highy Rated Movies</h3>
+          <h3>Featured Movies</h3>
         </section>
         <section className='top-rated-movies'>
           {topMovies}
