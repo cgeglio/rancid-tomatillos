@@ -27,8 +27,7 @@
   align-items: center;
 }
 
-.close-button,
-.submit-rating-button {
+.close-button {
   margin: 40% 0% 0% 670%;
   height: 30px;
   width: 30px;
@@ -39,16 +38,18 @@
   font-weight: bolder;
 }
 
+
+.remove-rating-button,
 .submit-rating-button {
   margin: 4%;
   width: 150px;
+  height: 30px;
   border-radius: 25px;
-  background-color: #fff590;
-}
-
-.submit-rating-button:hover,
-#rating-dropbox:hover {
-  cursor: pointer;
+  color: #fff;
+  background-color: #292c33;
+  font-weight: bold;
+  border: none;
+  font-size: 1em;
 }
 
 #rating-dropbox {
@@ -68,6 +69,7 @@
 }
 
 .close-button:hover,
+.remove-rating-button:hover,
 .submit-rating-button:hover {
   cursor: pointer;
   transform: scale(1.06);
@@ -85,7 +87,7 @@
 
 .movie-number {
   margin: 2% 10% 2% 10%;
-  font-size: 130%;
+  font-size: 100%;
 }
 
 .bold-text {
