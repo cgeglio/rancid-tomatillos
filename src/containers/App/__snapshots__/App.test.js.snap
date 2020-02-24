@@ -2,26 +2,32 @@
 
 exports[`App App container/component should match the snapshot 1`] = `
 <main>
-  <Route
-    exact={true}
-    path="/"
-  >
-    <Connect(Nav) />
-    <Connect(MoviesContainer) />
-  </Route>
-  <Route
-    path="/movies/:id"
-  >
-    <Connect(Nav) />
-    <Connect(MovieDetails) />
-  </Route>
-  <Route
-    exact={true}
-    path="/login"
-  >
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+    >
+      <Connect(Nav) />
+      <Connect(MoviesContainer) />
+    </Route>
+    <Route
+      exact={true}
+      path="/movies/:id"
+    >
+      <Connect(Nav) />
+      <Connect(MovieDetails) />
+    </Route>
+    <Route
+      exact={true}
+      path="/login"
+    >
+      <Redirect
+        to="/"
+      />
+    </Route>
     <Redirect
       to="/"
     />
-  </Route>
+  </Switch>
 </main>
 `;

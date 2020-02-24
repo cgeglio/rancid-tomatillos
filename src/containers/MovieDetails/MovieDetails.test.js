@@ -10,6 +10,19 @@ describe('MovieDetails', () => {
       const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('should format the movies release date', () => {
+      const mockDate = '2020-01-01';
+      const user = {
+        email: "sam@turing.io",
+        id: 20,
+        name: "Sam"
+      }
+      const expectedDate = 'January 01, 2020'
+      const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);    const mockFormatDate = wrapper.instance().formatDate(mockDate)
+      expect(mockFormatDate).toEqual(expectedDate)
+    });
+
   });
 
   describe('mapStateToProps', () => {

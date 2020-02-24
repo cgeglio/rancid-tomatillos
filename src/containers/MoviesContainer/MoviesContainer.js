@@ -10,20 +10,15 @@ import { getUserRatings } from '../../apiCalls'
 
 export class MoviesContainer extends Component {
 
-  componentDidMount()  {
+  componentDidMount() {
     getMoviesData()
     .then(movies => this.props.addMoviesToStore(movies.movies))
     .catch(error => console.log(error))
   }
 
-  formatDate(releaseDate) {
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let date = releaseDate.split('-')
-    return `${monthNames[date[1] - 1]} ${date[2]}, ${date[0]}`;
-  }
-
-  findUserRating = movie => {
-    return this.props.ratings.find(rating => rating.movie_id === movie) ? this.props.ratings.find(rating => rating.movie_id === movie).rating : 0;
+  findUserRating = movieId => {
+    return this.props.ratings.find(rating => rating.movie_id === movieId) ? 
+    this.props.ratings.find(rating => rating.movie_id === movieId).rating : 0;
   }
 
   saveSelectedMovieToStore = movie => {

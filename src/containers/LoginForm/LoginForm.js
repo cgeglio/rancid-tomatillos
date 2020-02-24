@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './LoginForm.css';
 import { connect } from 'react-redux';
-import { updateUser } from '../../actions';
-import { getRatings } from '../../actions';
+import { updateUser, getRatings } from '../../actions';
 import { getUserInfo, getUserRatings } from '../../apiCalls';
 
 export class LoginForm extends Component {

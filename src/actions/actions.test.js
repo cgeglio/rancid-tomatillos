@@ -102,6 +102,5 @@ describe('actions', () => {
     const result = actions.removeRatings(ratings);
 
     expect(result).toEqual(expectedAction);
-  })
-
-})
+  });
+});

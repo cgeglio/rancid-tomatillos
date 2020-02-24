@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviesContainer should match the snapshot 1`] = `
+exports[`MoviesContainer MoviesContainer Component should match the snapshot 1`] = `
 <section
   className="movies-display-container"
 >
@@ -8,7 +8,7 @@ exports[`MoviesContainer should match the snapshot 1`] = `
     className="movies-heading"
   >
     <h3>
-      Highy Rated Movies
+      Featured Movies
     </h3>
   </section>
   <section

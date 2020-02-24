@@ -31,6 +31,9 @@ exports[`MovieDetails MovieDetails container/component should match the snapshot
     <p
       className="movie-overview"
     />
+    <p
+      className="rating-error-msg"
+    />
     <div
       className="rating-container"
     >
@@ -98,7 +101,7 @@ exports[`MovieDetails MovieDetails container/component should match the snapshot
         className="submit-rating-button"
         onClick={[Function]}
       >
-        submit rating
+        Submit Rating
       </button>
     </div>
     <p
@@ -123,6 +126,12 @@ exports[`MovieDetails MovieDetails container/component should match the snapshot
        
       5
     </p>
+    <button
+      className="remove-rating-button"
+      onClick={[Function]}
+    >
+      Remove Rating
+    </button>
   </div>
 </article>
 `;

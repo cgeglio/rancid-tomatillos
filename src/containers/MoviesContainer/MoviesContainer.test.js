@@ -7,8 +7,6 @@ import { updateSelectedMovie, getMovies, getRatings } from '../../actions/index.
 
 jest.mock('../../apiCalls')
 
-// all tested except findUserRating() * * * * *
-
 describe('MoviesContainer', () => {
 
   beforeEach(() => {
@@ -20,6 +18,8 @@ describe('MoviesContainer', () => {
       return Promise.resolve([{ movie_id: 30, rating: 5 }]);
     });
   });
+
+  describe('MoviesContainer Component', () => {
 
   it('should match the snapshot', () => {
     const user = {
@@ -79,6 +79,31 @@ describe('MoviesContainer', () => {
       expect(wrapper.instance().findUser()).toEqual(false)
     })
   })
+  
+  describe('findUserRating', () => {
+    
+    it('should find a users ratings when passed an id', () => {
+      const user = {name: 'Eric', id: 40}
+      const mockRatings = [{rating_id:300, movie_id: 30, rating: 5}]
+      const mockMovies = [{id: 30, title: 'Ford v Ferrari'}, {id: 29, title: 'Frozen II'}]
+      const wrapper = shallow(<MoviesContainer user={user} movies={mockMovies} ratings={mockRatings}/>)
+      const movieId = 30
+      const mockFindRatings = wrapper.instance().findUserRating(movieId);
+      
+      expect(mockFindRatings).toEqual(5)
+    });
+
+    it('should return 0 if movie has not been rated', () => {
+      const user = {name: 'Eric', id: 40}
+      const mockRatings = [{rating_id:300, movie_id: 30, rating: 5}]
+      const mockMovies = [{id: 34, title: 'Ford v Ferrari'}, {id: 29, title: 'Frozen II'}]
+      const wrapper = shallow(<MoviesContainer user={user} movies={mockMovies} ratings={mockRatings}/>)
+      const movieId = 34
+      const mockFindRatings = wrapper.instance().findUserRating(movieId);
+      
+      expect(mockFindRatings).toEqual(0)
+    });
+  });
 
   describe('updateUserRatings', () => {
     it('should return null if no user', () => {
@@ -92,24 +117,17 @@ describe('MoviesContainer', () => {
       expect(wrapper.instance().updateUserRatings()).toEqual(null)
     })
 
-    it('should invoke getUserRatings when udpateUserRatings is called with a user', async () => {
-      window.fetch = jest.fn(() => {
-        return Promise.resolve({
-          status: 200,
-          ok: true
-        })
-      })
+    it('should invoke getUserRatings when udpateUserRatings is called with a user', () => {
       const user = {
         email: "sam@turing.io",
         id: 20,
         name: "Sam"
       }
       const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
-      wrapper.instance().props = {user, }
-      // getUserRatings: 20 => 'test'  ^ goes in here
-      const spy = jest.spyOn(wrapper.instance().props, 'getUserRatings')
+      wrapper.instance().props = {user}
       wrapper.instance().updateUserRatings()
-      await expect(spy).toHaveBeenCalled()
+      expect(getUserRatings).toHaveBeenCalledWith(user.id)
+      })
     })
   })
 
@@ -196,4 +214,5 @@ describe('MoviesContainer', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     });
   });
+
 });
