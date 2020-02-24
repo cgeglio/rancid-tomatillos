@@ -13,20 +13,7 @@ exports[`MoviesContainer should match the snapshot 1`] = `
   </section>
   <section
     className="top-rated-movies"
-  >
-    <MoviePreview
-      key="29"
-      movie={
-        Object {
-          "id": 29,
-          "title": "Ford v Ferrari",
-          "user_rating": 0,
-        }
-      }
-      saveSelectedMovieToStore={[Function]}
-      userLoggedIn={true}
-    />
-  </section>
+  />
   <section
     className="movies-heading"
   >
