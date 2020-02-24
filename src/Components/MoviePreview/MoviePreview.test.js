@@ -31,7 +31,7 @@ describe('MoviePreview', () => {
     expect(mockDeterminePath).toEqual('/login');
   });
 
-  it('should fire off saveSelectedMovieToStore with selected movie', () => {
+  it('should fire off saveSelectedMovieToStore with selected movie when rate buttton is clicked', () => {
     let mockSaveSelectedMovieToStore = jest.fn();
     const mockUserLoggedIn = false;
     let mockDate = '2020/10/10'
