@@ -8,13 +8,18 @@ import Loading from '../../Components/Loading/Loading';
 import './App.css';
 import { connect } from 'react-redux'
 
-
 export class App extends Component {
   render() {
-    return (
-    <main>
-      <Switch>
-         <Route exact path="/">
+    return(
+       <main>
+       <Route exact path='/'>
+         <Nav />
+         {!this.props.movies.length && <Loading />}
+         <MoviesContainer />
+       </Route>
+       <Route path='/movies/:id'>
+          {!this.props.user.id ? <Redirect to="/" /> : (
+          <>
            <Nav />
            <MoviesContainer />
          </Route>

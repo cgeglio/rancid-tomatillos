@@ -7,6 +7,8 @@ import { updateSelectedMovie, getMovies, getRatings } from '../../actions/index.
 
 jest.mock('../../apiCalls')
 
+// all tested except findUserRating() * * * * *
+
 describe('MoviesContainer', () => {
 
   beforeEach(() => {
@@ -28,6 +30,88 @@ describe('MoviesContainer', () => {
     const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
     expect(wrapper).toMatchSnapshot();
   });
+
+  describe('saveSelectedMovieToStore', () => {
+    it('should call addSelectedMovieToStore with a movie when saveSelectedMovieToStore is invoked', () => {
+      const user = {
+        email: "sam@turing.io",
+        id: 20,
+        name: "Sam"
+      }
+      const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
+      const movie = {
+        id: 29,
+        title: "Ford v Ferrari",
+        poster_path: "image.jpg",
+        backdrop_path: "image.jpg",
+        release_date: "2019-11-13",
+        overview: "American car designer",
+        average_rating: 1,
+        user_rating: 0
+      }
+      wrapper.instance().props = {addSelectedMovieToStore: movie => movie}
+      const spy = jest.spyOn(wrapper.instance().props, 'addSelectedMovieToStore')
+      wrapper.instance().saveSelectedMovieToStore(movie)
+      expect(spy).toHaveBeenCalled();
+    })
+  })
+
+  describe('findUser', () => {
+    it('should return true if there is a user', () => {
+      const user = {
+        email: "sam@turing.io",
+        id: 20,
+        name: "Sam"
+      }
+      const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
+      wrapper.instance().props = {user}
+      expect(wrapper.instance().findUser()).toEqual(true)
+    })
+
+    it('should return false if there is no user', () => {
+      const user = {
+        email: "sam@turing.io",
+        id: 20,
+        name: "Sam"
+      }
+      const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
+      wrapper.instance().props = {user: {}}
+      expect(wrapper.instance().findUser()).toEqual(false)
+    })
+  })
+
+  describe('updateUserRatings', () => {
+    it('should return null if no user', () => {
+      const user = {
+        email: "sam@turing.io",
+        id: 20,
+        name: "Sam"
+      }
+      const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
+      wrapper.instance().props = {user: {}}
+      expect(wrapper.instance().updateUserRatings()).toEqual(null)
+    })
+
+    it('should invoke getUserRatings when udpateUserRatings is called with a user', async () => {
+      window.fetch = jest.fn(() => {
+        return Promise.resolve({
+          status: 200,
+          ok: true
+        })
+      })
+      const user = {
+        email: "sam@turing.io",
+        id: 20,
+        name: "Sam"
+      }
+      const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
+      wrapper.instance().props = {user, }
+      // getUserRatings: 20 => 'test'  ^ goes in here
+      const spy = jest.spyOn(wrapper.instance().props, 'getUserRatings')
+      wrapper.instance().updateUserRatings()
+      await expect(spy).toHaveBeenCalled()
+    })
+  })
 
   describe('mapStateToProps', () => {
     it('should return an array of movie objects, selectedMovie info, user info, and an array of ratings objects', () => {
