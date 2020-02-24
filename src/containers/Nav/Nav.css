@@ -48,9 +48,14 @@
   color: #fbe832;
   font-size: 100%;
   font-weight: bold;
-  height: 40px;
   text-decoration: none;
   width: 80px;
+}
+
+.logout-button {
+  background-color: #292c33;
+  height: 48px;
+  margin-top: -1px;
 }
 
 .login-button:hover,
