@@ -12,6 +12,7 @@ export class App extends Component {
   render() {
     return(
        <main>
+       <Switch>
        <Route exact path='/'>
          <Nav />
          {!this.props.movies.length && <Loading />}
@@ -19,9 +20,11 @@ export class App extends Component {
        </Route>
        <Route path='/movies/:id'>
           {!this.props.user.id ? <Redirect to="/" /> : (
-          <>
+            <>
            <Nav />
            <MoviesContainer />
+           </>
+         )}
          </Route>
          <Route exact path="/movies/:id">
             {!this.props.user.id ? <Redirect to="/login" /> : (
