@@ -98,7 +98,7 @@ export class MovieDetails extends Component {
           </div>
           <p className='movie-number'><span className='bold-text'>Average Rating:</span> {this.props.selectedMovie.average_rating ? this.props.selectedMovie.average_rating.toFixed(1) : 0}</p>
           <p className='movie-number'><span className='bold-text'>My Rating:</span> {this.state.userRating ? this.state.userRating : 'Add Your Rating Above!'}</p>
-          <button className='submit-rating-button' onClick={() => this.removeRating(this.props.user.id, this.props.selectedMovie.id) }>Remove Rating</button>
+          <button className='remove-rating-button' onClick={() => this.removeRating(this.props.user.id, this.props.selectedMovie.id) }>Remove Rating</button>
         </div>
       </article>
     )
