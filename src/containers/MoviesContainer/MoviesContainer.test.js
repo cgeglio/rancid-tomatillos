@@ -31,20 +31,6 @@ describe('MoviesContainer', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should format the movies release date', () => {
-    const mockDate = '2020-01-01';
-    const user = {
-      email: "sam@turing.io",
-      id: 20,
-      name: "Sam"
-    }
-    const expectedDate = 'January 01, 2020'
-    const wrapper = shallow(<MoviesContainer user={user} movies={[{id: 29, title: "Ford v Ferrari",}]} ratings={[{movie_id: 30, rating: 5}]}/>)
-    const mockFormatDate = wrapper.instance().formatDate(mockDate)
-
-    expect(mockFormatDate).toEqual(expectedDate)
-  })
-
   describe('saveSelectedMovieToStore', () => {
     it('should call addSelectedMovieToStore with a movie when saveSelectedMovieToStore is invoked', () => {
       const user = {
