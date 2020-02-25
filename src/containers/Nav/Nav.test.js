@@ -11,6 +11,18 @@ describe('Nav', () => {
       const wrapper = shallow(<Nav user={{id: 5}}/>);
       expect(wrapper).toMatchSnapshot();
     });
+
+    // it('should fire off logoutUser and removeRatings when logout button is clicked ', () => {
+    //   wrapper.instance().verifyInputs = jest.fn();
+    //   wrapper.instance().forceUpdate()
+    //   const mockEvent = {
+    //     preventDefault: jest.fn()
+    //   }
+    //   wrapper.find('.login-btn').simulate('click', mockEvent)
+    //   expect(wrapper.instance().verifyInputs).toHaveBeenCalled()
+    // })
+
+
   });
 
   describe('mapStateToProps', () => {
