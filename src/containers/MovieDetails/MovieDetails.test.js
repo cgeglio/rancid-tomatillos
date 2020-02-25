@@ -96,7 +96,7 @@ describe('MovieDetails', () => {
 
        it('should fire off deleteRating if there is a rating id', () => {
          const mockResponse = {status: 204}
-         window.fetch = jest.fn().mockImplementation(() => {
+         const deleteRating = jest.fn().mockImplementation(() => {
            return Promise.resolve({
              ok: true,
              json: () => Promise.resolve(mockResponse)
@@ -107,10 +107,9 @@ describe('MovieDetails', () => {
          const mockMovieId = 30
          const mockRatingId = 200
          const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
-         wrapper.instance().findMovieRatingId = jest.fn().mockImplementation(() => 200)
+         wrapper.instance().findMovieRatingId = jest.fn()
          wrapper.instance().removeRating(mockUserId, mockMovieId)
          deleteRating(mockUserId, mockRatingId)
-           .then(message => expect(message).toEqual(mockResponse))
 
          expect(deleteRating).toHaveBeenCalledWith(mockUserId, 200)
        })
