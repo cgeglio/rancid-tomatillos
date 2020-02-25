@@ -7,6 +7,7 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import Loading from '../../Components/Loading/Loading';
 import './App.css';
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 export class App extends Component {
   render() {
@@ -46,5 +47,10 @@ export const mapStateToProps = state => ({
   user: state.user,
   movies: state.movies
 })
+
+App.propTypes = {
+  movies: PropTypes.array,
+  id: PropTypes.number
+}
 
 export default connect(mapStateToProps)(App);
