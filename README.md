@@ -2,7 +2,7 @@
 a place to rate movies you love!<br>
 ...and ones that make you sour
 
-**Link to Live Site** https://lemonwire.herokuapp.com/
+**Link to Live Site:** https://lemonwire.herokuapp.com/
 
 ### Introduction
 This was our third project (team of three) from Mod3 at Turing School of Software and Design. We were given one week to build a web app in React that allows different users to login and save their personal movie ratings with a user-friendly, interactive UI/UX. The app uses the `fetch()` method to `GET`, `POST`, and `DELETE` movie rating data while also utilizing React Redux and React Router. A major learning goal for this project was to create a robust testing suite using Jest and Enzyme to ensure all components and user interactions function correctly.
