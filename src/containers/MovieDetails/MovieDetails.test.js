@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { MovieDetails, mapStateToProps, mapDispatchToProps }from './MovieDetails';
 import { shallow } from 'enzyme';
 import { getRatings } from '../../actions/index.js';
+import { postRating, getUserRatings, deleteRating } from '../../apiCalls';
+
+jest.mock('../../apiCalls');
 
 describe('MovieDetails', () => {
   describe('MovieDetails container/component', () => {
@@ -10,6 +13,16 @@ describe('MovieDetails', () => {
       const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('should start off with a default state', () => {
+      const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+      const expectedState = {
+        ratingDropbox: null,
+        userRating: 5,
+        errorMessage: ''
+      }
+      expect(wrapper.state()).toEqual(expectedState)
+    })
 
     it('should format the movies release date', () => {
       const mockDate = '2020-01-01';
@@ -19,9 +32,89 @@ describe('MovieDetails', () => {
         name: "Sam"
       }
       const expectedDate = 'January 01, 2020'
-      const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);    const mockFormatDate = wrapper.instance().formatDate(mockDate)
+      const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+      const mockFormatDate = wrapper.instance().formatDate(mockDate)
       expect(mockFormatDate).toEqual(expectedDate)
     });
+
+    it('should update state when updateRatingState is called', () => {
+      const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+      const num = 6
+      const expected = {errorMessage: '', ratingDropbox: 6, userRating: 5}
+      wrapper.instance().updateRatingState(num)
+      expect(wrapper.state()).toEqual(expected)
+    })
+
+
+    describe('submitRating', () => {
+
+       let wrapper, mockUserId, mockMovieId, mockRating;
+
+      beforeEach(() => {
+        wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+        mockUserId = 20;
+        mockMovieId = 30;
+        mockRating = 10;
+      })
+
+      it('should setState with users rating', () => {
+        wrapper.instance().submitRating(mockUserId, mockMovieId, mockRating)
+        expect(wrapper.state('userRating')).toEqual(10)
+      })
+
+      it('should setState with error message if user did not select a rating', () => {
+        const expectedState = {
+          ratingDropbox: null,
+          userRating: 10,
+          errorMessage: 'Please select a rating number to submit!'
+        }
+        wrapper.instance().submitRating(mockUserId, mockMovieId, mockRating)
+        expect(wrapper.state()).toEqual(expectedState)
+      })
+
+      it('should call findMovieRatingId if user selected a rating', () => {
+        wrapper.setState({ratingDropbox: 10})
+        wrapper.instance().findMovieRatingId = jest.fn()
+        wrapper.instance().submitRating(mockUserId, mockMovieId, mockRating)
+        expect(wrapper.instance().findMovieRatingId).toHaveBeenCalledWith(mockMovieId)
+      })
+
+      it('should call postRating if the movie does not have a rating', () => {
+        wrapper.instance().findMovieRatingId = jest.fn().mockImplementation(() => 0)
+        wrapper.instance().submitRating(mockUserId, mockMovieId, mockRating)
+        expect(postRating).toHaveBeenCalledWith(mockUserId, mockMovieId, mockRating)
+      })
+
+      it('should call makeDeleteRequest if the movie does have a rating', () => {
+        wrapper.setState({ratingDropbox: 10})
+        wrapper.instance().findMovieRatingId = jest.fn().mockImplementation(() => 10)
+        wrapper.instance().makeDeleteRequest = jest.fn()
+        wrapper.instance().submitRating(mockUserId, mockMovieId, mockRating)
+        expect(wrapper.instance().makeDeleteRequest).toHaveBeenCalledWith(mockUserId, 10, mockMovieId, mockRating)
+      })
+    })
+
+       it('should fire off deleteRating if there is a rating id', () => {
+         const mockResponse = {status: 204}
+         window.fetch = jest.fn().mockImplementation(() => {
+           return Promise.resolve({
+             ok: true,
+             json: () => Promise.resolve(mockResponse)
+           })
+         })
+
+         const mockUserId = 20
+         const mockMovieId = 30
+         const mockRatingId = 200
+         const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+         wrapper.instance().findMovieRatingId = jest.fn().mockImplementation(() => 200)
+         wrapper.instance().removeRating(mockUserId, mockMovieId)
+         deleteRating(mockUserId, mockRatingId)
+           .then(message => expect(message).toEqual(mockResponse))
+
+         expect(deleteRating).toHaveBeenCalledWith(mockUserId, 200)
+       })
+
 
   });
 

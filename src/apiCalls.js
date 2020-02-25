@@ -58,7 +58,7 @@ export const deleteRating = (userId, ratingId) => {
   })
   .then(response => {
     if (!response.ok) {
-      throw Error('Error Message');
+      throw Error('There was an error making your delete request');
     }
   })
 }

@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom';
 import './MovieDetails.css';
 import { connect } from 'react-redux';
 import { getRatings } from '../../actions';
-import { postRating } from '../../apiCalls';
-import { getUserRatings } from '../../apiCalls';
-import { deleteRating } from '../../apiCalls'
+import { postRating, getUserRatings, deleteRating } from '../../apiCalls';
 
 export class MovieDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ratingDropbox: null, 
+      ratingDropbox: null,
       userRating: this.props.selectedMovie.user_rating,
       errorMessage: ''
     }
@@ -43,9 +41,7 @@ export class MovieDetails extends Component {
 
   removeRating = (userId, movieId) => {
     const ratingId = this.findMovieRatingId(movieId);
-    if (!ratingId) {
-      return
-    } else {
+    if (ratingId) {
       const rating = 0;
       deleteRating(userId, ratingId)
         .then(() => getUserRatings(userId))
