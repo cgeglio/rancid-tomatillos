@@ -4,6 +4,8 @@ import './MovieDetails.css';
 import { connect } from 'react-redux';
 import { getRatings } from '../../actions';
 import { postRating, getUserRatings, deleteRating } from '../../apiCalls';
+import PropTypes from 'prop-types';
+
 
 export class MovieDetails extends Component {
   constructor(props) {
@@ -110,10 +112,25 @@ export const mapStateToProps = (state) => ({
   selectedMovie: state.selectedMovie,
   user: state.user,
   ratings: state.ratings
-})
+});
 
 export const mapDispatchToProps = dispatch => ({
   addUserRatings: ratings => dispatch(getRatings(ratings))
-})
+});
+
+MovieDetails.propTypes = {
+  user_rating: PropTypes.number,
+  errorMessage: PropTypes.string,
+  formatDate: PropTypes.func,
+  updateRatings: PropTypes.func,
+  submitRating: PropTypes.func,
+  removeRating: PropTypes.func,
+  makeDeleteRequest: PropTypes.func,
+  updateRatings: PropTypes.func,
+  findMovieRatingId: PropTypes.func,
+  getUserRatings: PropTypes.func,
+  ratings: PropTypes.array,
+  selectedMovie: PropTypes.object
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
