@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { getMovies } from '../../actions'
 import { updateSelectedMovie } from '../../actions';
 import { getRatings } from '../../actions';
-import { getMoviesData } from '../../apiCalls'
-import { getUserRatings } from '../../apiCalls'
+import { getMoviesData } from '../../apiCalls';
+import { getUserRatings } from '../../apiCalls';
+import PropTypes from 'prop-types';
+
 
 export class MoviesContainer extends Component {
 
@@ -82,5 +84,16 @@ export const mapDispatchToProps = (dispatch) =>({
   addSelectedMovieToStore: selectedMovie => dispatch(updateSelectedMovie(selectedMovie)),
   addUserRatings: ratings => dispatch(getRatings(ratings))
 })
+
+MoviesContainer.proptype = {
+  getMoviesData: PropTypes.func,
+  addMoviesToStore: PropTypes.func,
+  findUserRating: PropTypes.func,
+  saveSelectedMovieToStore: PropTypes.func,
+  findUser: PropTypes.func,
+  updateUserRatings: PropTypes.func,
+  movies: PropTypes.array,
+  ratings: PropTypes.array
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);
