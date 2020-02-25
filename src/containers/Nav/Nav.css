@@ -1,6 +1,3 @@
-/* #fbe832 yellow*/
-/* #292c33 charcoal */
-
 * {
   margin: 0px;
   padding: 0px;
@@ -8,27 +5,27 @@
 }
 
 #title {
-  font-size: 250%;
+  color: #FFF;
   font-family: Fredoka One;
+  font-size: 250%;
   font-weight: lighter;
-  position: absolute;
   left: 80px;
   margin-left: 5px;
-  color: #FFF;
+  position: absolute;
 }
 
 .nav {
   align-items: center;
   background-image: url(../../Assets/film_reel_nav_yellow_nf.png);
   background-size: contain;
-  border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
+  border-top-left-radius: 40px;
   display: flex;
   height: 80px;
   justify-content: space-between;
   left: 0;
-  position: fixed;
   opacity: 90%;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 120;
@@ -37,9 +34,9 @@
 #logo {
   background-image: url(../../Assets/lemon_slice.jpg);
   background-size: contain;
+  border-radius: 40px;
   height: 80px;
   width: 80px;
-  border-radius: 40px;
 }
 
 .login-button,
@@ -68,9 +65,9 @@
 
 .login-button {
   height: 36px !important;
+  margin-top: -1px;
   padding-top: 13px;
   text-align: center;
-  margin-top: -1px;
 }
 
 #welcome-message {

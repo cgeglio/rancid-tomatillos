@@ -6,9 +6,9 @@ a place to rate movies you love!<br>
 This was our third project (team of three) from Mod3 at Turing School of Software and Design. We were given one week to build a web app in React that allows different users to login and save their personal movie ratings with a user-friendly, interactive UI/UX. The app uses the `fetch()` method to `GET`, `POST`, and `DELETE` movie rating data while also utilizing React Redux and React Router. A major learning goal for this project was to create a robust testing suite using Jest and Enzyme to ensure all components and user interactions function correctly.
 
 ### Screenshots
-![screenshot 1](https://user-images.githubusercontent.com/53405028/75131901-22f64400-5692-11ea-98f5-fafade0b9b12.png)
+![screenshot 1](https://user-images.githubusercontent.com/53405028/75276854-2db0f600-57c4-11ea-8464-bf559cd68bb3.png)
 
-![screenshot 2](https://user-images.githubusercontent.com/53405028/75131950-5638d300-5692-11ea-8b0a-48b55e7a942d.png)
+![screenshot 2](https://user-images.githubusercontent.com/53405028/75276838-27227e80-57c4-11ea-91a7-5d51aca645e8.png)
 
 ![screenshot 3](https://user-images.githubusercontent.com/53405028/75131980-736da180-5692-11ea-9c9a-a0a6c8773abb.png)
 

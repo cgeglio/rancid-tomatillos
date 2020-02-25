@@ -4,68 +4,68 @@
 }
 
 .movie-details-container {
-  display: flex;
-  height: 80%;
-  width: 90%;
   background: rgb(255,237,48);
   background: linear-gradient(0deg, rgba(255,237,48,1) 0%, rgba(255,255,255,1) 64%);
-  margin-top: 110px;
   border-radius: 10px;
+  display: flex;
+  height: 80%;
+  margin-top: 110px;
+  width: 90%;
 }
 
 .movie-backdrop {
-  border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
   height: 100%;
-  width: 60%;
   object-fit: cover;
+  width: 60%;
 }
 
 .movie-details {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .close-button {
-  margin: 40% 0% 0% 670%;
-  height: 30px;
-  width: 30px;
+  background-color: #FFF;
   border-radius: 15px;
   border: 1px solid #000;
-  background-color: #FFF;
   font-size: 100%;
   font-weight: bolder;
+  height: 30px;
+  margin: 40% 0% 0% 670%;
+  width: 30px;
 }
 
 .rating-error-msg {
-  height: 2rem;
-  width: 100%;
-  display: flex;
-  color: red;
-  font-weight: bold;
-  justify-content: center;
   align-items: flex-end;
+  color: red;
+  display: flex;
+  font-weight: bold;
+  height: 2rem;
+  justify-content: center;
   margin-top: 25px;
+  width: 100%;
 }
 
 .remove-rating-button,
 .submit-rating-button {
-  margin: 2% 4%;
-  width: 150px;
-  height: 30px;
+  background-color: #292c33;
+  border: none;
   border-radius: 25px;
   color: #fff;
-  background-color: #292c33;
-  font-weight: bold;
-  border: none;
   font-size: 1em;
+  font-weight: bold;
+  height: 30px;
+  margin: 2% 4%;
+  width: 150px;
 }
 
 #rating-dropbox {
   height: 30px;
-  width: 70px;
   font-size: 100%;
+  width: 70px;
 }
 
 .movie-title {
@@ -81,23 +81,23 @@
 .close-button:hover,
 .remove-rating-button:hover,
 .submit-rating-button:hover {
+  box-shadow: 0 0 2px 1px gray;
   cursor: pointer;
   transform: scale(1.06);
   transition: transform .5s;
-  box-shadow: 0 0 2px 1px gray;
 }
 
 .rating-container {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin-top: 5%;
   width: 50%;
 }
 
 .movie-number {
-  margin: 2% 10% 2% 10%;
   font-size: 100%;
+  margin: 2% 10% 2% 10%;
 }
 
 .bold-text {
