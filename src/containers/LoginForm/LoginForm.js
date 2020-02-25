@@ -53,7 +53,7 @@ export class LoginForm extends Component {
           onChange={this.handleChange}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Password..."
           name="password"
           value={this.state.password}
