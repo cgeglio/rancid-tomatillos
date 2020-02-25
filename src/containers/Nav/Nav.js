@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logoutUser } from '../../actions';
 import { removeRatings } from '../../actions';
-
+import PropTypes from 'prop-types';
 export class Nav extends Component {
 
   render() {
@@ -28,5 +28,14 @@ export const mapDispatchToProps = dispatch => ({
   logoutUser: user => dispatch(logoutUser(user)),
   removeRatings: ratings => dispatch(removeRatings(ratings))
 })
+
+Nav.propTypes = {
+  user: PropTypes.object,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  logoutUser: PropTypes.func,
+  removeRatings: PropTypes.func,
+  ratings: PropTypes.array
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

@@ -3,6 +3,7 @@ import './LoginForm.css';
 import { connect } from 'react-redux';
 import { updateUser, getRatings } from '../../actions';
 import { getUserInfo, getUserRatings } from '../../apiCalls';
+import PropTypes from 'prop-types';
 
 export class LoginForm extends Component {
   constructor() {
@@ -69,5 +70,16 @@ export const mapDispatchToProps = dispatch => ({
   addUser: user => dispatch(updateUser(user)),
   addUserRatings: ratings => dispatch(getRatings(ratings))
 })
+
+LoginForm.propTypes = {
+  handleChange: PropTypes.func,
+  verifyInputs: PropTypes.func,
+  completeLogin: PropTypes.func,
+  fetchUserInfo: PropTypes.func,
+  fetchUserRatings: PropTypes.func,
+  getRatings: PropTypes.func,
+  getUserInfo: PropTypes.func,
+  error: PropTypes.bool
+}
 
 export default connect(null, mapDispatchToProps)(LoginForm)

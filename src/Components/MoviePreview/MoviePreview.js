@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './MoviePreview.css';
 import lemon from '../../Assets/lemon.png';
+import PropTypes from 'prop-types'
 
 class MoviePreview extends Component {
 
@@ -32,6 +33,13 @@ class MoviePreview extends Component {
       </article>
     )
   }
+}
+
+MoviePreview.propTypes = {
+  determinePath: PropTypes.func,
+  saveSelectedMovieToStore: PropTypes.func,
+  movie: PropTypes.object,
+  date: PropTypes.string,
 }
 
 export default MoviePreview;
