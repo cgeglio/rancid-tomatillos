@@ -19,7 +19,7 @@ export class MoviesContainer extends Component {
   }
 
   findUserRating = movieId => {
-    return this.props.ratings.find(rating => rating.movie_id === movieId) ? 
+    return this.props.ratings.find(rating => rating.movie_id === movieId) ?
     this.props.ratings.find(rating => rating.movie_id === movieId).rating : 0;
   }
 
@@ -48,7 +48,7 @@ export class MoviesContainer extends Component {
       return <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} key={movie.id} userLoggedIn={this.findUser()} movie={movie}/>
     })
 
-    let filteredMovies = this.props.movies.filter(movie => movie.average_rating > 6.3)
+    let filteredMovies = this.props.movies.filter(movie => movie.average_rating > 5)
     let sortedMovies = filteredMovies.sort((a, b) => b.average_rating - a.average_rating)
     let topMovies = sortedMovies.map(movie => <MoviePreview saveSelectedMovieToStore={this.saveSelectedMovieToStore} userLoggedIn={this.findUser()} key={movie.id} movie={movie}/>)
 
