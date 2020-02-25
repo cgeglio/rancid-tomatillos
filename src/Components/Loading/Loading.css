@@ -1,13 +1,13 @@
 .lemon-img {
   height: 300px;
-  width: 300px;
   margin-top: 40%;
+  width: 300px;
 }
 
 .loading-text {
-  position: relative;
-  top: 67%;
-  left: 28%;
   font-size: 200%;
   font-weight: bolder;
+  left: 28%;
+  position: relative;
+  top: 67%;
 }

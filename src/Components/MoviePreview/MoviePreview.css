@@ -1,15 +1,14 @@
-
 .movie-poster-image {
   height: 300px;
-  width: 200px;
   object-fit: cover;
+  width: 200px;
 }
 
 .movie-poster-image:hover {
+  box-shadow: 0 0 30px 3px #fbe832;
   cursor: pointer;
   transform: scale(1.06);
   transition: transform .5s;
-  box-shadow: 0 0 30px 3px #fbe832;
 }
 
 .movie-preview-container {
@@ -73,10 +72,10 @@
 }
 
 .preview-rating-button:hover {
+  box-shadow: 0 0 10px 1px #fbe832;
   cursor: pointer;
   transform: scale(1.06);
   transition: transform .5s;
-  box-shadow: 0 0 10px 1px #fbe832;
 }
 
 .ratings {
@@ -91,11 +90,11 @@
 }
 
 .user-rating-label,
-.avg-rating-label {
+.avg-rating-label {  
+  font-size: .6em;
+  height: 10px;
   position: relative;
   width: 20px;
-  height: 10px;
-  font-size: .6em;
   z-index: 100;
 }
 
