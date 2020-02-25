@@ -45,6 +45,25 @@ describe('MovieDetails', () => {
       expect(wrapper.state()).toEqual(expected)
     })
 
+    it('should invoke deleteRating when makeDeleteRequest is called', () => {
+      const mockResponse = {status: 204}
+      const deleteRating = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+      const mockUserId = 20;
+      const mockMovieId = 30;
+      const mockRatingId = 200;
+      const mockRating = 10;
+      const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+      wrapper.instance().makeDeleteRequest(mockUserId, mockRatingId, mockMovieId, mockRating)
+      deleteRating(mockUserId, mockRatingId)
+      expect(deleteRating).toHaveBeenCalled()
+    })
+  });
+
 
     describe('submitRating', () => {
 
@@ -94,28 +113,59 @@ describe('MovieDetails', () => {
       })
     })
 
+    describe('removeRating', () => {
        it('should fire off deleteRating if there is a rating id', () => {
          const mockResponse = {status: 204}
-         window.fetch = jest.fn().mockImplementation(() => {
+         const deleteRating = jest.fn().mockImplementation(() => {
            return Promise.resolve({
              ok: true,
              json: () => Promise.resolve(mockResponse)
            })
          })
-
-         const mockUserId = 20
-         const mockMovieId = 30
-         const mockRatingId = 200
+         const mockUserId = 20;
+         const mockMovieId = 30;
+         const mockRatingId = 200;
          const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
-         wrapper.instance().findMovieRatingId = jest.fn().mockImplementation(() => 200)
+         wrapper.instance().findMovieRatingId = jest.fn()
          wrapper.instance().removeRating(mockUserId, mockMovieId)
          deleteRating(mockUserId, mockRatingId)
-           .then(message => expect(message).toEqual(mockResponse))
-
          expect(deleteRating).toHaveBeenCalledWith(mockUserId, 200)
        })
+    });
 
+    describe('updateRatings', () => {
+      it('should fire off getUserRatings with the user id', () => {
+        const mockResponse = {ratings: [{id: 1, user_id: 1, movie_id: 1, rating: 6, created_at: "someDate", updated_at: "someDate"}]}
+        const getUserRatings = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(mockResponse)
+          })
+        })
+        const mockUserId = 20;
+        const mockMovieId = 30;
+        const mockRating = 9;
+        const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
+        wrapper.instance().updateRatings(mockUserId, mockMovieId, mockRating)
+        getUserRatings(mockUserId)
+        expect(getUserRatings(mockUserId)).toHaveBeenCalled()
+      })
+    });
 
+    describe('findMovieRatingId', () => {
+      it('should be able to find a movie\'s rating id if it has one', () => {
+        let mockMovieId = 30;
+        const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', user_rating: 7, average_rating: 8, release_date: '2020-01-20'}} ratings={[{id: 340, rating: 10, movie_id: 30}]} />);
+        let mockFindMovieRatingId = wrapper.instance().findMovieRatingId(mockMovieId)
+        expect(mockFindMovieRatingId).toEqual(340);
+      })
+
+      it('should rerurn 0 if a movie does not have a rating id', () => {
+        let mockMovieId = 30;
+        const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', user_rating: 7, average_rating: 8, release_date: '2020-01-20'}} ratings={[{id: 340, rating: 10, movie_id: 35}]} />);
+        let mockFindMovieRatingId = wrapper.instance().findMovieRatingId(mockMovieId)
+        expect(mockFindMovieRatingId).toEqual(0);
+      })
   });
 
   describe('mapStateToProps', () => {

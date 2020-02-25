@@ -47,12 +47,14 @@ export class MovieDetails extends Component {
         .then(() => getUserRatings(userId))
         .then(ratings => this.props.addUserRatings(ratings.ratings))
         .then(() => this.setState({userRating: rating}))
+        .catch(error => console.log(error))
     }
   }
 
   makeDeleteRequest = (userId, ratingId, movieId, rating) => {
     deleteRating(userId, ratingId)
-    .then( () => this.updateRatings(userId, movieId, rating ))
+      .then(() => this.updateRatings(userId, movieId, rating ))
+      .catch(error => console.log(error))
   }
 
   updateRatings = (userId, movieId, rating ) => {
