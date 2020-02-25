@@ -44,6 +44,7 @@ describe('MovieDetails', () => {
       wrapper.instance().updateRatingState(num)
       expect(wrapper.state()).toEqual(expected)
     })
+  });
 
 
     describe('submitRating', () => {
@@ -94,6 +95,7 @@ describe('MovieDetails', () => {
       })
     })
 
+    describe('removeRating', () => {
        it('should fire off deleteRating if there is a rating id', () => {
          const mockResponse = {status: 204}
          const deleteRating = jest.fn().mockImplementation(() => {
@@ -103,9 +105,9 @@ describe('MovieDetails', () => {
            })
          })
 
-         const mockUserId = 20
-         const mockMovieId = 30
-         const mockRatingId = 200
+         const mockUserId = 20;
+         const mockMovieId = 30;
+         const mockRatingId = 200;
          const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', release_date: '2020-02-10', user_rating: 5, average_rating: 8}} />);
          wrapper.instance().findMovieRatingId = jest.fn()
          wrapper.instance().removeRating(mockUserId, mockMovieId)
@@ -113,8 +115,22 @@ describe('MovieDetails', () => {
 
          expect(deleteRating).toHaveBeenCalledWith(mockUserId, 200)
        })
+    });
 
+    describe('findMovieRatingId', () => {
+      it('should be able to find a movie\'s rating id if it has one', () => {
+        let mockMovieId = 30;
+        const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', user_rating: 7, average_rating: 8, release_date: '2020-01-20'}} ratings={[{id: 340, rating: 10, movie_id: 30}]} />);
+        let mockFindMovieRatingId = wrapper.instance().findMovieRatingId(mockMovieId)
+        expect(mockFindMovieRatingId).toEqual(340);
+      })
 
+      it('should rerurn 0 if a movie does not have a rating id', () => {
+        let mockMovieId = 30;
+        const wrapper = shallow(<MovieDetails selectedMovie={{title: 'Sonic the Hedgehog', user_rating: 7, average_rating: 8, release_date: '2020-01-20'}} ratings={[{id: 340, rating: 10, movie_id: 35}]} />);
+        let mockFindMovieRatingId = wrapper.instance().findMovieRatingId(mockMovieId)
+        expect(mockFindMovieRatingId).toEqual(0);
+      })
   });
 
   describe('mapStateToProps', () => {
