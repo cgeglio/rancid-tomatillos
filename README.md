@@ -12,6 +12,9 @@ This was our third project (team of three) from Mod3 at Turing School of Softwar
 
 ![screenshot 3](https://user-images.githubusercontent.com/53405028/75131980-736da180-5692-11ea-9c9a-a0a6c8773abb.png)
 
+### In Action
+![LemonWire gif](https://media.giphy.com/media/gFbMIKgVxjoUIzwybm/giphy.gif)
+
 ### Directions for Use
 - On page load you will see a container near the top of the page containing movie posters of all featured movies. This box can be navigated by scrolling left or right.
 - Below the featured movies container is a complete list of all available movies. A user may scroll up and down to view all movies.
